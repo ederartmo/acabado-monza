@@ -230,7 +230,7 @@ if (toneRow) {
     .join('');
 }
 
-// Formulario: por ahora redirige a WhatsApp con los datos capturados
+// Formulario de contacto
 const contactForm = document.querySelector('.contact-form');
 
 if (contactForm) {
@@ -243,7 +243,7 @@ if (contactForm) {
     field.addEventListener('change', () => field.classList.remove('is-invalid'));
   });
 
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const missingFields = requiredFields.filter((field) => !field.value.trim());
@@ -260,42 +260,49 @@ if (contactForm) {
     }
 
     const data = new FormData(contactForm);
-    const fields = {
-      nombre: data.get('nombre')?.toString().trim() || 'No especificado',
-      empresa: data.get('empresa')?.toString().trim() || 'No especificado',
-      telefono: data.get('telefono')?.toString().trim() || 'No especificado',
-      ciudad: data.get('ciudad')?.toString().trim() || 'No especificado',
-      tipoProducto: data.get('tipo-producto')?.toString().trim() || 'No especificado',
-      material: data.get('material')?.toString().trim() || 'No especificado',
-      mensaje: data.get('mensaje')?.toString().trim() || 'No especificado'
-    };
-
-    const text = [
-      'Hola Acabados Monza, quiero solicitar asesoría técnica.',
-      '',
-      `Nombre: ${fields.nombre}`,
-      `Empresa/Taller: ${fields.empresa}`,
-      `Teléfono/WhatsApp: ${fields.telefono}`,
-      `Ciudad: ${fields.ciudad}`,
-      `Tipo de producto: ${fields.tipoProducto}`,
-      `Material: ${fields.material}`,
-      `Necesidad/Proyecto: ${fields.mensaje}`
-    ].join('\n');
-
-    const waUrl = `https://wa.me/5214773948872?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, '_blank', 'noopener');
 
     if (formStatus) {
-      formStatus.textContent = 'Listo, abrimos WhatsApp con tu solicitud.';
+      formStatus.textContent = 'Enviando solicitud...';
       formStatus.classList.remove('is-error');
     }
 
+    const originalText = submitButton?.textContent || 'Solicitar asesoría';
+
     if (submitButton) {
-      const originalText = submitButton.textContent;
-      submitButton.textContent = 'Solicitud preparada';
-      setTimeout(() => {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+    }
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || 'No pudimos enviar tu solicitud.');
+      }
+
+      contactForm.reset();
+
+      if (formStatus) {
+        formStatus.textContent = 'Gracias, recibimos tu solicitud. Te contactaremos pronto.';
+        formStatus.classList.remove('is-error');
+      }
+    } catch (error) {
+      if (formStatus) {
+        formStatus.textContent = 'No pudimos enviar el formulario. Escríbenos por WhatsApp o intenta de nuevo.';
+        formStatus.classList.add('is-error');
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
         submitButton.textContent = originalText;
-      }, 2200);
+      }
     }
   });
 }

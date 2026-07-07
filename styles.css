@@ -1439,6 +1439,14 @@ p {
   grid-column: 1 / -1;
 }
 
+.form-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-form .btn {
   margin-top: 1rem;
   width: 100%;
