@@ -1767,12 +1767,12 @@ p {
 
   .hero-bg {
     inset: 0 0 auto;
-    height: 338px;
+    height: 360px;
     opacity: 1;
   }
 
   .hero-bg img {
-    object-position: center -205px;
+    object-position: center -270px;
   }
 
   .hero-bg::after {
