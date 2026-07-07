@@ -1772,7 +1772,7 @@ p {
   }
 
   .hero-bg img {
-    object-position: center -370px;
+    object-position: center -320px;
   }
 
   .hero-bg::after {
