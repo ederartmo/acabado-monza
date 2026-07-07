@@ -23,12 +23,14 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 104px;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   font-family: "Plus Jakarta Sans", "Barlow", sans-serif;
   color: var(--ink);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 100% 0%, rgba(67, 116, 214, 0.08) 0%, rgba(67, 116, 214, 0) 40%),
     radial-gradient(circle at 0% 40%, rgba(54, 96, 190, 0.08) 0%, rgba(54, 96, 190, 0) 45%),
@@ -1471,6 +1473,7 @@ p {
   gap: 2rem;
   padding: 3rem 0 2.6rem;
   align-items: start;
+  min-width: 0;
 }
 
 .footer__grid h3 {
@@ -1484,6 +1487,7 @@ p {
   display: block;
   color: #dbe8ff;
   margin: 0 0 0.5rem;
+  max-width: 100%;
 }
 
 .footer__logo {
@@ -1513,6 +1517,10 @@ p {
 .footer__contact p {
   color: #fff;
   font-weight: 800;
+}
+
+.footer__contact a {
+  overflow-wrap: anywhere;
 }
 
 .footer__social-links {
@@ -1990,7 +1998,7 @@ p {
   }
 
   .footer__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.35rem 1rem;
     padding: 2.4rem 0 2rem;
     text-align: center;
@@ -2016,11 +2024,23 @@ p {
   }
 
   .footer__social {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
   .footer__social-links {
     justify-content: center;
+  }
+
+  .floating-whatsapp {
+    right: 14px;
+    bottom: 14px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .floating-whatsapp svg {
+    width: 32px;
+    height: 32px;
   }
 
   .footer__bottom .container {
