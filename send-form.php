@@ -90,4 +90,31 @@ if (!$sent) {
     exit;
 }
 
+$confirmationSubject = 'Recibimos tu solicitud - Acabados Monza';
+$confirmationBody = implode("\n", [
+    'Hola ' . $fields['nombre'] . ',',
+    '',
+    'Gracias por contactar a Acabados Monza. Recibimos tu solicitud correctamente y nuestro equipo ya la esta revisando.',
+    '',
+    'Resumen de tu solicitud:',
+    'Telefono/WhatsApp: ' . $fields['telefono'],
+    'Tipo de producto: ' . $fields['tipoProducto'],
+    'Material: ' . $fields['material'],
+    '',
+    'Nos pondremos en contacto contigo lo antes posible.',
+    '',
+    'Acabados Monza',
+    'info@acabadosmonza.com',
+]);
+
+$confirmationHeaders = [
+    'From: Acabados Monza <' . $from . '>',
+    'Reply-To: Acabados Monza <' . $from . '>',
+    'MIME-Version: 1.0',
+    'Content-Type: text/plain; charset=UTF-8',
+    'X-Mailer: PHP/' . phpversion(),
+];
+
+mail($fields['email'], $confirmationSubject, $confirmationBody, implode("\r\n", $confirmationHeaders), '-f' . $from);
+
 echo json_encode(['ok' => true]);
