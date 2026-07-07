@@ -235,8 +235,32 @@ const contactForm = document.querySelector('.contact-form');
 
 if (contactForm) {
   const formStatus = contactForm.querySelector('.form-status');
-  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const submitButtons = Array.from(contactForm.querySelectorAll('button[type="submit"]'));
   const requiredFields = Array.from(contactForm.querySelectorAll('[required]'));
+
+  const getFormFields = (data) => ({
+    nombre: data.get('nombre')?.toString().trim() || 'No especificado',
+    empresa: data.get('empresa')?.toString().trim() || 'No especificado',
+    telefono: data.get('telefono')?.toString().trim() || 'No especificado',
+    email: data.get('email')?.toString().trim() || 'No especificado',
+    ciudad: data.get('ciudad')?.toString().trim() || 'No especificado',
+    tipoProducto: data.get('tipo-producto')?.toString().trim() || 'No especificado',
+    material: data.get('material')?.toString().trim() || 'No especificado',
+    mensaje: data.get('mensaje')?.toString().trim() || 'No especificado'
+  });
+
+  const buildWhatsAppText = (fields) => [
+    'Hola Acabados Monza, quiero solicitar asesoría técnica.',
+    '',
+    `Nombre: ${fields.nombre}`,
+    `Empresa/Taller: ${fields.empresa}`,
+    `Teléfono/WhatsApp: ${fields.telefono}`,
+    `Correo: ${fields.email}`,
+    `Ciudad: ${fields.ciudad}`,
+    `Tipo de producto: ${fields.tipoProducto}`,
+    `Material: ${fields.material}`,
+    `Necesidad/Proyecto: ${fields.mensaje}`
+  ].join('\n');
 
   requiredFields.forEach((field) => {
     field.addEventListener('input', () => field.classList.remove('is-invalid'));
@@ -245,6 +269,7 @@ if (contactForm) {
 
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    const selectedAction = event.submitter?.value || 'whatsapp';
 
     const missingFields = requiredFields.filter((field) => !field.value.trim());
 
@@ -260,17 +285,32 @@ if (contactForm) {
     }
 
     const data = new FormData(contactForm);
+    const selectedButton = event.submitter && event.submitter.matches('button[type="submit"]') ? event.submitter : null;
+    const originalText = selectedButton?.textContent || 'Enviar';
+
+    if (selectedAction === 'whatsapp') {
+      const text = buildWhatsAppText(getFormFields(data));
+      const waUrl = `https://wa.me/5214773948872?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank', 'noopener');
+
+      if (formStatus) {
+        formStatus.textContent = 'Listo, abrimos WhatsApp con tu solicitud.';
+        formStatus.classList.remove('is-error');
+      }
+      return;
+    }
 
     if (formStatus) {
       formStatus.textContent = 'Enviando solicitud...';
       formStatus.classList.remove('is-error');
     }
 
-    const originalText = submitButton?.textContent || 'Solicitar asesoría';
+    submitButtons.forEach((button) => {
+      button.disabled = true;
+    });
 
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Enviando...';
+    if (selectedButton) {
+      selectedButton.textContent = 'Enviando...';
     }
 
     try {
@@ -299,9 +339,12 @@ if (contactForm) {
         formStatus.classList.add('is-error');
       }
     } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
+      submitButtons.forEach((button) => {
+        button.disabled = false;
+      });
+
+      if (selectedButton) {
+        selectedButton.textContent = originalText;
       }
     }
   });
