@@ -900,7 +900,7 @@ p {
   scroll-padding-inline: 0.15rem;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
+  touch-action: manipulation;
 }
 
 .product-card {
@@ -1030,7 +1030,7 @@ p {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
+  touch-action: manipulation;
 }
 
 .golden-grid::-webkit-scrollbar {
@@ -2836,7 +2836,7 @@ p {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
+  touch-action: manipulation;
   mask-image: linear-gradient(to right, black 0, black calc(100% - 38px), transparent 100%);
 }
 
@@ -3156,8 +3156,10 @@ p {
   }
 
   .hero-bg img {
+    height: calc(100% + 24px);
     object-fit: cover;
     object-position: center top;
+    transform: translateY(-24px);
   }
 
   .hero-bg::after {
