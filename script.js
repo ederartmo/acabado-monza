@@ -98,6 +98,200 @@ document.querySelectorAll('[data-product-slider]').forEach((slider) => {
   updateSliderButtons();
 });
 
+const lineCatalog = document.querySelector('[data-line-catalog]');
+
+if (lineCatalog) {
+  const lineCatalogData = {
+    spray: {
+      label: 'SPRAY',
+      title: 'Línea SPRAY',
+      description: 'Listado oficial de productos de la línea SPRAY.',
+      products: [
+        '11-1 NEUTRO — BELLE LUX',
+        '47-7 NEUTRO — BELLE LUX',
+        '02-0 — BRILLO GLOSS',
+        'WXMZ-1000 — WAXI NEUTRO',
+        'SMZ-24 — WHITE LUX NEUTRO',
+        'SAMZ-309 — OPTIMA NEUTRO',
+        'SAMZ-20 — SPRAY NEUTRO',
+        'WFMZ-1035 — WAX FILL NEUTRO',
+        'SFP-800 — TOP CREAM SEMI-MATE',
+        'CMZ-612 — CREMA ECO TOP UNIVERSAL',
+        'SAMZ-260 — BRILLO P/SOLE NEUTRO'
+      ],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea SPRAY.'
+    },
+    cremas: {
+      label: 'CREMAS',
+      title: 'Línea CREMAS',
+      description: 'Listado oficial de productos de la línea CREMAS.',
+      products: [
+        'CMZ-617 — DIJON CREAM',
+        'CNFP-700 — CREMA ANTIQUE NATURAL',
+        'Sin clave — Delica cream',
+        'CMZ-616 — SHINE CREAM NEUTRO',
+        'Sin clave — Basco top',
+        'CFP-105 — CREMA P/SINTETICO'
+      ],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea CREMAS.'
+    },
+    lavadores: {
+      label: 'LAVADORES / LIMPIADORES',
+      title: 'Línea LAVADORES / LIMPIADORES',
+      description: 'Listado oficial de productos de la línea LAVADORES / LIMPIADORES.',
+      products: [
+        'LMZ-2691 — LAVADOR',
+        'LCH-X30 — LAVADOR P/CHAROL',
+        'LFP-3141 — LAVADOR P/PEGAMENTO',
+        'LSFP-015 — LAVADOR P/PEG.PVC',
+        'LFP-2400 — LAVADOR',
+        'AC-51 — ACTIVADOR NORMAL',
+        'ACFP-61 — LIMPIADOR AC',
+        'LMZ-777 — LAVADOR QUITA-RAYA',
+        'LFP-2426 SP — LAVADOR QUITA-RAYA'
+      ],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea LAVADORES / LIMPIADORES.'
+    },
+    fijatonos: {
+      label: 'FIJATONOS',
+      title: 'Línea FIJATONOS',
+      description: 'Listado oficial de productos de la línea FIJATONOS.',
+      products: [
+        '0-04 NATURAL — VELVETOK',
+        '0-05 rosa — VELVETOK',
+        'VSMZ-550 — VELVET SUEDE NEUTRO',
+        'FJMZ-570 — REPELENTE',
+        'Sin clave — Defender protect'
+      ],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea FIJATONOS.'
+    },
+    grasos: {
+      label: 'GRASOS',
+      title: 'Línea GRASOS',
+      description: 'Listado oficial de productos de la línea GRASOS.',
+      products: [
+        'GFP-160 — SPRAY TACTO GRASO',
+        'Sin clave — Eco graso',
+        'Sin clave — Grease oil',
+        'Sin clave — Grease -oil—90',
+        'Sin clave — Cream graso',
+        'Sin clave — Oíl neutro'
+      ],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea GRASOS.'
+    },
+    reparadores: {
+      label: 'REPARADORES',
+      title: 'Línea REPARADORES',
+      description: 'Listado oficial de productos de la línea REPARADORES.',
+      products: ['Pigmentos', 'Farbern', 'Compactos', 'Estucos', 'Resanador'],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea REPARADORES.'
+    },
+    marroquineria: {
+      label: 'MARROQUINERA',
+      title: 'Línea MARROQUINERA',
+      description: 'Listado oficial de productos de la línea MARROQUINERA.',
+      products: ['Dátil MA', 'Dátil CU', 'Dátil LQ', 'Tinta plastificante', 'Sellador'],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea MARROQUINERA.'
+    },
+    preacabados: {
+      label: 'PRE-ACABADOS',
+      title: 'Línea PRE-ACABADOS',
+      description: 'Listado oficial de productos de la línea PRE-ACABADOS.',
+      products: ['Stein', 'Tinta de cantos', 'Tapaporos', 'Pielera', 'Pre Fondo', 'Tinta cerco'],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea PRE-ACABADOS.'
+    },
+    auxiliares: {
+      label: 'AUXILIARES',
+      title: 'Línea AUXILIARES',
+      description: 'Listado oficial de productos de la línea AUXILIARES.',
+      products: [
+        'Acondicionador',
+        'Masitas',
+        'Crayones',
+        'Cosméticos polvo',
+        'Cosmético liquido',
+        'Humectantes',
+        'Suavizadores',
+        'Cambra',
+        'Flor fix',
+        'Charolinas',
+        'Metálicos'
+      ],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea AUXILIARES.'
+    },
+    preformas: {
+      label: 'PRE-FORMAS',
+      title: 'Línea PRE-FORMAS',
+      description: 'Listado oficial de productos de la línea PRE-FORMAS.',
+      products: ['Tinta Eva', 'Tinta ranil', 'Tinta ABS', 'Matizantes', 'Bloming', 'Primer'],
+      ctaMessage: 'Hola Acabados Monza, quiero información de la línea PRE-FORMAS.'
+    }
+  };
+
+  const lineTabs = Array.from(lineCatalog.querySelectorAll('[data-line-key]'));
+  const lineLabel = lineCatalog.querySelector('[data-line-label]');
+  const lineTitle = lineCatalog.querySelector('[data-line-title]');
+  const lineDescription = lineCatalog.querySelector('[data-line-description]');
+  const lineProducts = lineCatalog.querySelector('[data-line-products]');
+  const lineCta = lineCatalog.querySelector('[data-line-cta]');
+  const catalogSurface = lineCatalog.querySelector('[data-catalog-surface]');
+  const catalogToggle = lineCatalog.querySelector('[data-catalog-toggle]');
+  const catalogDetail = lineCatalog.querySelector('#catalogo-lineas-detalle');
+
+  function setCatalogExpanded(expanded) {
+    if (!catalogSurface || !catalogToggle || !catalogDetail) return;
+    catalogSurface.classList.toggle('is-collapsed', !expanded);
+    catalogDetail.hidden = !expanded;
+    catalogToggle.setAttribute('aria-expanded', String(expanded));
+    catalogToggle.textContent = expanded ? 'Ver menos' : 'Ver detalles';
+  }
+
+  function buildWhatsAppUrl(activeLine) {
+    const message = activeLine.ctaMessage || `Hola Acabados Monza, quiero información de la ${activeLine.title}.`;
+    return `https://wa.me/5214773948872?text=${encodeURIComponent(message)}`;
+  }
+
+  function setActiveLine(activeKey) {
+    const activeLine = lineCatalogData[activeKey];
+    if (!activeLine || !lineLabel || !lineTitle || !lineDescription || !lineProducts || !lineCta) return;
+
+    lineLabel.textContent = activeLine.label;
+    lineTitle.textContent = activeLine.title;
+    lineDescription.textContent = activeLine.description;
+    lineProducts.innerHTML = activeLine.products.map((product) => `<li>${product}</li>`).join('');
+    lineCta.href = buildWhatsAppUrl(activeLine);
+    lineCta.setAttribute('aria-label', `Solicitar información por WhatsApp para ${activeLine.title}`);
+
+    lineTabs.forEach((tab) => {
+      const isActive = tab.dataset.lineKey === activeKey;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', String(isActive));
+    });
+  }
+
+  lineTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.dataset.lineKey;
+      if (!key) return;
+      setActiveLine(key);
+    });
+  });
+
+  if (catalogToggle) {
+    catalogToggle.addEventListener('click', () => {
+      const expanded = catalogToggle.getAttribute('aria-expanded') === 'true';
+      setCatalogExpanded(!expanded);
+    });
+  }
+
+  const defaultKey = lineTabs.find((tab) => tab.classList.contains('is-active'))?.dataset.lineKey || lineTabs[0]?.dataset.lineKey;
+  if (defaultKey) {
+    setActiveLine(defaultKey);
+  }
+
+  setCatalogExpanded(false);
+}
+
 document.querySelectorAll('[data-golden-slider]').forEach((slider) => {
   const track = slider.querySelector('.golden-grid');
   if (!track) return;
@@ -131,6 +325,40 @@ document.querySelectorAll('[data-golden-slider]').forEach((slider) => {
   track.addEventListener('mouseleave', () => { isInteracting = false; });
 
   setInterval(advanceGoldenSlider, 3200);
+});
+
+document.querySelectorAll('[data-golden-products-slider]').forEach((slider) => {
+  const track = slider.querySelector('.golden-listing__grid');
+  const previousButton = slider.querySelector('[data-golden-products-prev]');
+  const nextButton = slider.querySelector('[data-golden-products-next]');
+
+  if (!track || !previousButton || !nextButton) return;
+
+  function getGoldenProductStep() {
+    const firstCard = track.querySelector('.golden-product-card');
+    if (!firstCard) return track.clientWidth;
+
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
+    return firstCard.getBoundingClientRect().width + gap;
+  }
+
+  function updateGoldenProductButtons() {
+    const maxScroll = track.scrollWidth - track.clientWidth - 2;
+    previousButton.disabled = track.scrollLeft <= 2;
+    nextButton.disabled = track.scrollLeft >= maxScroll;
+  }
+
+  previousButton.addEventListener('click', () => {
+    track.scrollBy({ left: -getGoldenProductStep(), behavior: 'smooth' });
+  });
+
+  nextButton.addEventListener('click', () => {
+    track.scrollBy({ left: getGoldenProductStep(), behavior: 'smooth' });
+  });
+
+  track.addEventListener('scroll', updateGoldenProductButtons, { passive: true });
+  window.addEventListener('resize', updateGoldenProductButtons);
+  updateGoldenProductButtons();
 });
 
 const teamCards = Array.from(document.querySelectorAll('.team-card'));

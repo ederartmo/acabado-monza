@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260710-01" />
+    <link rel="stylesheet" href="styles.css?v=20260716-02" />
   </head>
   <body>
     <!-- Top Bar -->
@@ -254,7 +254,7 @@
               </article>
 
               <article class="product-card">
-              <div class="product-card__media"><img src="assets/products/6.webp" alt="Tinta Cantos" loading="lazy" /></div>
+              <div class="product-card__media"><img src="assets/products/6.png" alt="Tinta Cantos" loading="lazy" /></div>
               <div class="product-card__body">
                 <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m14.7 6.3 3 3"/><path d="M3 21h6l11-11a2.1 2.1 0 0 0-3-3L6 18v3Z"/></svg></span>
                 <div>
@@ -293,7 +293,7 @@
               </article>
 
               <article class="product-card">
-              <div class="product-card__media"><img src="assets/golden/Lavadores%20limpiadores.jpg" alt="Lavadores y Limpiadores" loading="lazy" /></div>
+              <div class="product-card__media"><img src="assets/golden/Lavadores limpiadores.jpg" alt="Lavadores y Limpiadores" loading="lazy" /></div>
               <div class="product-card__body">
                 <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M4 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></span>
                 <div>
@@ -333,91 +333,101 @@
             </div>
           </div>
 
-          <div class="catalog-map" aria-label="Catalogo por categorias">
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Lavadores / Limpiadores</strong><span>Preparación de superficie antes de color y acabado.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Fijatonos</strong><span>Sellado de color para mejorar resistencia y uniformidad.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Grasos</strong><span>Acabados con tacto profundo para pieles de uso intenso.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Reparadores</strong><span>Productos para cantos, tacones y retoques de alto desgaste.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Marroquinería</strong><span>Tintas y productos para bordes, cantos y acabado fino.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Pre-acabados</strong><span>Suavizadores y preparadores antes del acabado final.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Auxiliares</strong><span>Productos auxiliares para procesos y aplicaciones especiales.</span></div></a>
-            <a href="#contacto" class="feature-item catalog-map__link"><div><strong>Pre-formas</strong><span>Auxiliares para procesos de armado y preparación.</span></div></a>
-          </div>
+          <div class="product-listing product-catalog" data-line-catalog>
+            <h3 class="product-listing__title">Catálogo técnico por líneas</h3>
 
-          <div class="product-listing">
-            <h3 class="product-listing__title">Listado de productos por línea</h3>
-            <div class="product-listing__grid">
+            <div class="product-catalog__surface is-collapsed" data-catalog-surface>
+              <div class="product-catalog__head">
+                <div class="product-catalog__nav" role="tablist" aria-label="Líneas del catálogo técnico">
+                <button class="product-catalog__tab is-active" type="button" role="tab" aria-selected="true" data-line-key="spray">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9h10"/><path d="M8 9V6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3"/><path d="M7 9v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9"/></svg></span>
+                  <span>Spray</span>
+                </button>
 
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Spray</span>
-                <h3>Eco Shine 25</h3>
-                <p>Top brillo en spray para acabado final uniforme y rápido.</p>
-                <a href="#contacto">Solicitar información</a>
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="cremas">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4h8"/><path d="M9 4v4h6V4"/><path d="M7 8h10l-1 11a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2L7 8Z"/></svg></span>
+                  <span>Cremas</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="lavadores">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 3h6"/><path d="M10 3v3h4V3"/><path d="M8 6h8l1 14H7L8 6Z"/><path d="M10 12h4"/></svg></span>
+                  <span>Lavadores / Limpiadores</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="fijatonos">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m6 12 4 4 8-8"/><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/></svg></span>
+                  <span>Fijatonos</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="grasos">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22a7 7 0 0 0 7-7c0-4-7-13-7-13S5 11 5 15a7 7 0 0 0 7 7Z"/></svg></span>
+                  <span>Grasos</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="reparadores">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m14.7 6.3 3 3"/><path d="M3 21h6l11-11a2.1 2.1 0 0 0-3-3L6 18v3Z"/></svg></span>
+                  <span>Reparadores</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="marroquineria">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V7a5 5 0 0 1 10 0v2"/><path d="M5 9h14l1 11H4L5 9Z"/><path d="M9 13h6"/></svg></span>
+                  <span>Marroquinera</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="preacabados">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M4 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></span>
+                  <span>Pre-acabados</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="auxiliares">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12.5 11 14l4-4"/><path d="M12 3 4 7v5c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V7l-8-4Z"/></svg></span>
+                  <span>Auxiliares</span>
+                </button>
+
+                <button class="product-catalog__tab" type="button" role="tab" aria-selected="false" data-line-key="preformas">
+                  <span class="product-catalog__tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19a2 2 0 0 0 2 2h12"/><path d="M6 17a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3l7 7v5a2 2 0 0 1-2 2H6Z"/><path d="M9 3v5a2 2 0 0 0 2 2h5"/></svg></span>
+                  <span>Pre-formas</span>
+                </button>
+
+                </div>
+
+                <button
+                  class="btn btn--ghost product-catalog__toggle"
+                  type="button"
+                  data-catalog-toggle
+                  aria-expanded="false"
+                  aria-controls="catalogo-lineas-detalle"
+                >
+                  Ver detalles
+                </button>
+              </div>
+
+              <article id="catalogo-lineas-detalle" class="product-catalog__detail" role="tabpanel" aria-live="polite" hidden>
+                <span class="product-catalog__pill" data-line-label>Spray</span>
+                <h3 class="product-catalog__line-title" data-line-title>Línea Spray</h3>
+                <p class="product-catalog__line-description" data-line-description>
+                  Top brillo para acabado final uniforme y secado rápido en procesos de producción.
+                </p>
+
+                <div class="product-catalog__products">
+                  <h4>Productos principales</h4>
+                  <ul data-line-products>
+                    <li>Eco Shine 25</li>
+                    <li>Evolux Shine 1210</li>
+                    <li>Brillo Express</li>
+                  </ul>
+                </div>
+
+                <a
+                  class="btn btn--primary product-catalog__cta"
+                  data-line-cta
+                  href="https://wa.me/5214773948872?text=Hola%20Acabados%20Monza%2C%20quiero%20informaci%C3%B3n%20de%20la%20L%C3%ADnea%20Spray."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Solicitar información por WhatsApp
+                </a>
               </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Cremas</span>
-                <h3>Valencia Cream</h3>
-                <p>Crema de teñido y brillo para nutrir, igualar y realzar color.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Lavadores / Limpiadores</span>
-                <h3>Línea Lavadores</h3>
-                <p>Preparación y limpieza de superficie antes del color y acabado final.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Fijatonos</span>
-                <h3>Línea Fijatonos</h3>
-                <p>Sellado de color para mejorar resistencia y uniformidad del acabado.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Grasos</span>
-                <h3>Línea Grasos</h3>
-                <p>Acabados con tacto profundo y protección para pieles de uso intenso.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Reparadores</span>
-                <h3>Tinta Cantos</h3>
-                <p>Producto para cantos, tacones y retoques de alto desgaste.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Marroquinería</span>
-                <h3>Datil-MA/MQ</h3>
-                <p>Tinta para bordes, cantos y procesos de acabado fino en marroquinería.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Pre-acabados</span>
-                <h3>Humecta 800</h3>
-                <p>Suavizador para piel y sintético antes del acabado final.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Auxiliares</span>
-                <h3>Línea Auxiliares</h3>
-                <p>Productos auxiliares para procesos y aplicaciones especiales de acabado.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
-              <article class="product-listing-card">
-                <span class="product-listing-card__cat">Pre-formas</span>
-                <h3>Línea Pre-formas</h3>
-                <p>Auxiliares para procesos de armado y preparación del calzado.</p>
-                <a href="#contacto">Solicitar información</a>
-              </article>
-
             </div>
           </div>
         </div>
@@ -434,51 +444,52 @@
               de piel que necesitan un acabado superior.
             </p>
           </div>
-          <div class="golden-carousel" data-golden-slider aria-label="Productos Línea Golden">
-            <div class="golden-grid">
-              <article><span></span><h3>Barcelona Cream</h3><p>Crema fina, nutritiva y restauradora de tono.</p></article>
-              <article><span></span><h3>Evolux Shine 1210</h3><p>Brillo técnico con protección y tacto flexible.</p></article>
-              <article><span></span><h3>Velvet</h3><p>Tacto suave para acabados de apariencia fina.</p></article>
-              <article><span></span><h3>Belle Lux 204</h3><p>Lustre elegante para piezas terminadas.</p></article>
-              <article><span></span><h3>Graso Sport</h3><p>Acabado graso para piel de uso rudo.</p></article>
-            </div>
-          </div>
         </div>
         <div class="container">
-          <div class="golden-listing">
-            <h3 class="golden-listing__title">Productos Línea Golden</h3>
+          <div class="golden-listing" data-golden-products-slider>
+            <div class="golden-listing__head">
+              <h3 class="golden-listing__title">Productos Línea Golden</h3>
+              <div class="golden-listing__controls" aria-label="Navegar productos Línea Golden">
+                <button class="golden-listing__button" type="button" data-golden-products-prev aria-label="Producto Golden anterior">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button class="golden-listing__button" type="button" data-golden-products-next aria-label="Producto Golden siguiente">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
             <div class="golden-listing__grid">
 
               <article class="golden-product-card">
-                <div class="golden-product-card__img golden-product-card__img--barcelona"></div>
+                <img class="golden-product-card__img" src="assets/golden/barcelona.png" alt="Barcelona Cream" loading="lazy" />
                 <h3>Barcelona Cream</h3>
                 <p>Crema fina, nutritiva y restauradora de tono.</p>
                 <a href="#contacto">Solicitar información</a>
               </article>
 
               <article class="golden-product-card">
-                <div class="golden-product-card__img golden-product-card__img--evolux"></div>
+                <img class="golden-product-card__img" src="assets/golden/evolux shine 1210.png" alt="Evolux Shine 1210" loading="lazy" />
                 <h3>Evolux Shine 1210</h3>
                 <p>Brillo técnico con protección y tacto flexible.</p>
                 <a href="#contacto">Solicitar información</a>
               </article>
 
               <article class="golden-product-card">
-                <div class="golden-product-card__img golden-product-card__img--velvet"></div>
+                <img class="golden-product-card__img" src="assets/golden/velvet.png" alt="Velvet" loading="lazy" />
                 <h3>Velvet</h3>
                 <p>Tacto suave para acabados de apariencia fina.</p>
                 <a href="#contacto">Solicitar información</a>
               </article>
 
               <article class="golden-product-card">
-                <div class="golden-product-card__img golden-product-card__img--belle"></div>
+                <img class="golden-product-card__img" src="assets/golden/belle lux204.png" alt="Belle Lux 204" loading="lazy" />
                 <h3>Belle Lux 204</h3>
                 <p>Lustre elegante para piezas terminadas.</p>
                 <a href="#contacto">Solicitar información</a>
               </article>
 
               <article class="golden-product-card">
-                <div class="golden-product-card__img golden-product-card__img--graso"></div>
+                <img class="golden-product-card__img" src="assets/golden/Graso.jpg" alt="Graso Sport" loading="lazy" />
                 <h3>Graso Sport</h3>
                 <p>Acabado graso para piel de uso rudo.</p>
                 <a href="#contacto">Solicitar información</a>
@@ -837,6 +848,6 @@
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5A12.4 12.4 0 0 0 5.2 22l-1.1 5.3 5.4-1.4A12.4 12.4 0 1 0 16 3.5Zm0 2.4a10 10 0 0 1 8.5 15.3A10 10 0 0 1 10 23.4l-.4-.2-2.4.6.5-2.3-.2-.4A10 10 0 0 1 16 5.9Zm-4 4.7c-.2 0-.5.1-.7.3-.7.6-1 1.5-1 2.4 0 .7.3 1.5.8 2.2 1.2 2 2.8 3.6 4.9 4.6 1.7.8 2.7.9 3.6.7 1-.2 1.8-.9 2.1-1.7.2-.5.2-1 .1-1.2-.1-.2-.3-.3-.6-.4l-2-.9c-.3-.1-.6-.1-.8.2l-.9 1.1c-.2.2-.4.2-.7.1-1.3-.6-2.4-1.5-3.1-2.8-.1-.2-.1-.5.1-.7l.7-.8c.2-.2.2-.5.1-.8l-.9-2c-.1-.3-.4-.5-.7-.5h-1Z"/></svg>
     </a>
 
-    <script src="script.js?v=20260710-01"></script>
+    <script src="script.js?v=20260716-01"></script>
   </body>
 </html>
