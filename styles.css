@@ -3156,10 +3156,10 @@ p {
   }
 
   .hero-bg img {
-    height: calc(100% + 24px);
+    height: calc(100% + 100px);
     object-fit: cover;
     object-position: center top;
-    transform: translateY(-24px);
+    transform: translateY(-100px);
   }
 
   .hero-bg::after {
