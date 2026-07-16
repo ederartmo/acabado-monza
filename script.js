@@ -4,6 +4,48 @@ const nav = document.querySelector('.nav');
 const navMore = document.querySelector('.nav-more');
 const navMoreButton = document.querySelector('.nav-more-button');
 
+document.querySelectorAll('.footer__links-toggle').forEach((toggle) => {
+  const panelId = toggle.getAttribute('aria-controls');
+  const panel = panelId ? document.getElementById(panelId) : null;
+  if (!panel) return;
+
+  toggle.addEventListener('click', () => {
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isExpanded));
+    panel.hidden = isExpanded;
+  });
+
+  panel.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+    });
+  });
+});
+
+/* Keep WhatsApp out of the mobile hero, then restore it after that first screen. */
+(function () {
+  const hero = document.querySelector('.hero');
+  const whatsappButton = document.querySelector('.floating-whatsapp');
+  const mobileQuery = window.matchMedia('(max-width:1024px)');
+  if (!hero || !whatsappButton) return;
+
+  function updateWhatsAppVisibility() {
+    if (!mobileQuery.matches) {
+      whatsappButton.classList.remove('is-visible');
+      return;
+    }
+
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    whatsappButton.classList.toggle('is-visible', heroBottom <= 140);
+  }
+
+  window.addEventListener('scroll', updateWhatsAppVisibility, { passive: true });
+  window.addEventListener('resize', updateWhatsAppVisibility);
+  mobileQuery.addEventListener('change', updateWhatsAppVisibility);
+  updateWhatsAppVisibility();
+})();
+
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -366,10 +408,12 @@ const teamFilters = Array.from(document.querySelectorAll('[data-team-filter]'));
 const teamShowMore = document.querySelector('.team-show-more');
 let teamExpanded = false;
 let activeTeamFilter = 'todos';
+const mobileTeamQuery = window.matchMedia('(max-width: 720px)');
 
 function updateTeamDirectory() {
   const filteredCards = teamCards.filter((card) => activeTeamFilter === 'todos' || card.dataset.teamArea === activeTeamFilter);
-  const visibleLimit = activeTeamFilter === 'todos' && !teamExpanded ? 8 : filteredCards.length;
+  const previewLimit = mobileTeamQuery.matches ? 4 : 8;
+  const visibleLimit = activeTeamFilter === 'todos' && !teamExpanded ? previewLimit : filteredCards.length;
 
   teamCards.forEach((card) => {
     const matchesFilter = filteredCards.includes(card);
@@ -378,7 +422,7 @@ function updateTeamDirectory() {
   });
 
   if (teamShowMore) {
-    const shouldShowButton = activeTeamFilter === 'todos' && filteredCards.length > 8;
+    const shouldShowButton = activeTeamFilter === 'todos' && filteredCards.length > previewLimit;
     teamShowMore.hidden = !shouldShowButton;
     teamShowMore.textContent = teamExpanded ? 'Ver menos' : 'Ver equipo completo';
   }
@@ -386,6 +430,7 @@ function updateTeamDirectory() {
 
 if (teamCards.length) {
   updateTeamDirectory();
+  mobileTeamQuery.addEventListener('change', updateTeamDirectory);
 }
 
 teamFilters.forEach((filter) => {
@@ -465,12 +510,22 @@ if (contactForm) {
   const formStatus = contactForm.querySelector('.form-status');
   const submitButtons = Array.from(contactForm.querySelectorAll('button[type="submit"]'));
   const requiredFields = Array.from(contactForm.querySelectorAll('[required]'));
+  const detailsToggle = contactForm.querySelector('.form-details-toggle');
+  const detailsPanel = contactForm.querySelector('.form-details');
+  const contactField = contactForm.querySelector('[name="telefono"]');
+
+  if (detailsToggle && detailsPanel) {
+    detailsToggle.addEventListener('click', () => {
+      const isExpanded = detailsToggle.getAttribute('aria-expanded') === 'true';
+      detailsToggle.setAttribute('aria-expanded', String(!isExpanded));
+      detailsPanel.hidden = isExpanded;
+    });
+  }
 
   const getFormFields = (data) => ({
     nombre: data.get('nombre')?.toString().trim() || 'No especificado',
     empresa: data.get('empresa')?.toString().trim() || 'No especificado',
     telefono: data.get('telefono')?.toString().trim() || 'No especificado',
-    email: data.get('email')?.toString().trim() || 'No especificado',
     ciudad: data.get('ciudad')?.toString().trim() || 'No especificado',
     tipoProducto: data.get('tipo-producto')?.toString().trim() || 'No especificado',
     material: data.get('material')?.toString().trim() || 'No especificado',
@@ -482,8 +537,7 @@ if (contactForm) {
     '',
     `Nombre: ${fields.nombre}`,
     `Empresa/Taller: ${fields.empresa}`,
-    `Teléfono/WhatsApp: ${fields.telefono}`,
-    `Correo: ${fields.email}`,
+    `Contacto: ${fields.telefono}`,
     `Ciudad: ${fields.ciudad}`,
     `Tipo de producto: ${fields.tipoProducto}`,
     `Material: ${fields.material}`,
@@ -501,18 +555,30 @@ if (contactForm) {
 
     const missingFields = requiredFields.filter((field) => !field.value.trim());
 
+    const contactValue = contactField?.value.trim() || '';
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactValue);
+
+    if (selectedAction === 'email' && contactField && !isEmail && !missingFields.includes(contactField)) {
+      missingFields.push(contactField);
+    }
+
     if (missingFields.length) {
       missingFields.forEach((field) => field.classList.add('is-invalid'));
       missingFields[0].focus();
 
       if (formStatus) {
-        formStatus.textContent = 'Completa los campos marcados para enviar tu solicitud.';
+        formStatus.textContent = selectedAction === 'email' && !isEmail
+          ? 'Para enviar por correo, escribe un correo electrónico válido en el campo de contacto.'
+          : 'Completa los campos marcados para enviar tu solicitud.';
         formStatus.classList.add('is-error');
       }
       return;
     }
 
     const data = new FormData(contactForm);
+    if (selectedAction === 'email') {
+      data.set('email', contactValue);
+    }
     const selectedButton = event.submitter && event.submitter.matches('button[type="submit"]') ? event.submitter : null;
     const originalText = selectedButton?.textContent || 'Enviar';
 
@@ -577,3 +643,91 @@ if (contactForm) {
     }
   });
 }
+
+/* Lightweight marquee initializer (mobile <=1024px) */
+(function () {
+  const topbar = document.querySelector('.topbar');
+  if (!topbar) return;
+  const content = topbar.querySelector('.topbar__content');
+  if (!content) return;
+
+  const mm = window.matchMedia('(max-width:1024px)');
+
+  function setup() {
+    if (!mm.matches) {
+      // destroy if exists
+      const existing = content.querySelector('.topbar__marquee');
+      if (existing) existing.remove();
+      delete content.dataset.marqueeInit;
+      return;
+    }
+
+    if (content.dataset.marqueeInit === '1') return;
+    const items = Array.from(content.querySelectorAll('.topbar__item'));
+    if (!items.length) return;
+
+    const original = items.map((el) => el.outerHTML);
+    items.forEach((el) => el.remove());
+
+    const marquee = document.createElement('div');
+    marquee.className = 'topbar__marquee';
+    const track = document.createElement('div');
+    track.className = 'topbar__marquee-track';
+    track.innerHTML = original.join('').repeat(3);
+    marquee.appendChild(track);
+    content.appendChild(marquee);
+
+    requestAnimationFrame(() => {
+      const firstChildren = Array.from(track.children).slice(0, original.length);
+      const firstWidth = firstChildren.reduce((acc, el) => acc + (el.getBoundingClientRect().width || 0), 0) || 1;
+      const duration = Math.max(4, firstWidth / 40);
+      track.style.setProperty('--marquee-translate', `${firstWidth}px`);
+      track.style.setProperty('--marquee-duration', `${duration}s`);
+      track.style.animationDuration = `${duration}s`;
+      track.classList.add('is-animated');
+    });
+
+    // simple pointer handlers: pause, drag, resume at position
+    marquee.addEventListener('pointerdown', (e) => {
+      marquee.setPointerCapture(e.pointerId);
+      track.classList.add('paused');
+      const m = getComputedStyle(track).transform;
+      let x = 0;
+      if (m && m !== 'none') {
+        const vals = m.match(/matrix\(([^)]+)\)/);
+        if (vals) x = parseFloat(vals[1].split(',')[4]) || 0;
+      }
+      marquee._startX = e.clientX;
+      marquee._startOffset = x;
+    });
+
+    marquee.addEventListener('pointermove', (e) => {
+      if (!marquee.hasPointerCapture(e.pointerId)) return;
+      const dx = e.clientX - (marquee._startX || 0);
+      track.style.transform = `translate3d(${(marquee._startOffset || 0) + dx}px,0,0)`;
+    });
+
+    marquee.addEventListener('pointerup', (e) => {
+      if (marquee.hasPointerCapture(e.pointerId)) marquee.releasePointerCapture(e.pointerId);
+      const m = getComputedStyle(track).transform;
+      let x = 0;
+      if (m && m !== 'none') {
+        const vals = m.match(/matrix\(([^)]+)\)/);
+        if (vals) x = parseFloat(vals[1].split(',')[4]) || 0;
+      }
+      const firstChildren = Array.from(track.children).slice(0, Math.max(1, Math.floor(track.children.length / 3)));
+      const firstWidth = firstChildren.reduce((acc, el) => acc + (el.getBoundingClientRect().width || 0), 0) || 1;
+      const progress = ((-x % firstWidth) + firstWidth) % firstWidth / firstWidth;
+      const duration = parseFloat(getComputedStyle(track).animationDuration) || (firstWidth / 40);
+      track.style.animationDelay = `${-progress * duration}s`;
+      void track.offsetWidth;
+      track.style.transform = '';
+      track.classList.remove('paused');
+    });
+
+    content.dataset.marqueeInit = '1';
+  }
+
+  mm.addEventListener('change', setup);
+  setup();
+})();

@@ -32,7 +32,7 @@ $fields = [
     'mensaje' => trim(strip_tags((string)($_POST['mensaje'] ?? ''))),
 ];
 
-$required = ['nombre', 'telefono', 'email', 'tipoProducto', 'material', 'mensaje'];
+$required = ['nombre', 'telefono', 'email', 'tipoProducto', 'material'];
 
 foreach ($required as $field) {
     if ($fields[$field] === '') {

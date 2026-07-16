@@ -503,6 +503,283 @@ p {
   gap: 0.8rem;
 }
 
+/* Mobile adjustments */
+@media (max-width: 1024px) {
+  .hero {
+    /* occupy viewport (minus header) so next section is off-screen */
+    min-height: calc(100vh - 112px);
+    padding: 0.4rem 0 0.6rem;
+  }
+
+  .hero__layout {
+    min-height: auto;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  /* Make image shorter and allow content to overlap using a gradient */
+  .hero-bg {
+    position: absolute;
+    inset: 0 0 0 0;
+    height: 100%;
+  }
+
+  /* Hide hero image on non-PC sizes to guarantee copy visibility */
+  .hero-bg {
+    display: none;
+  }
+
+  .hero-bg img {
+    height: 50vh;
+    object-position: 60% 30%;
+  }
+
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50vh;
+    background: linear-gradient(180deg, rgba(247, 251, 255, 0) 0%, rgba(247, 251, 255, 0.9) 60%, rgba(247, 251, 255, 1) 100%);
+    pointer-events: none;
+  }
+
+  .hero__copy {
+    padding-top: 0.2rem;
+    z-index: 3;
+    /* ensure copy sits above the gradient and is readable */
+    max-width: 92%;
+  }
+
+  /* Move hero copy up: tighter spacing so copy + CTAs fit in first fold */
+  .hero__copy {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .hero__copy .eyebrow {
+    margin-bottom: 0.35rem;
+    font-size: 0.78rem;
+  }
+
+  .hero__copy h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.06;
+    margin: 0 0 0.18rem 0;
+  }
+
+  .hero__copy p {
+    margin: 0 0 0.4rem 0;
+  }
+
+  .hero__actions {
+    position: static;
+    margin-top: auto;
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.92rem;
+  }
+
+  /* Reserve a little room above the floating WhatsApp button. */
+  .hero__copy {
+    padding-bottom: 4.8rem;
+  }
+
+  /* Ensure title, text and CTAs are visible on first viewport */
+  .hero__copy h1,
+  .hero__copy p,
+  .hero__actions {
+    position: relative;
+    z-index: 4;
+  }
+
+  /* Slightly reduce heading size on smaller viewports to fit into first fold */
+  .hero__copy h1 {
+    font-size: clamp(1.6rem, 5.2vw, 2.4rem);
+    line-height: 1.08;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero__actions {
+    margin-top: 0.6rem;
+  }
+
+  /* mini-benefits should start below the hero area */
+  .hero__mini-benefits {
+    /* present three benefit cards in a single horizontal row */
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    align-items: stretch;
+  }
+
+  .hero__mini-benefits .mini-benefit {
+    flex: 0 0 calc((100% - 1.2rem) / 3);
+    min-width: 0;
+    padding: 0.65rem;
+  }
+
+  .hero__mini-benefits .mini-benefit h3 {
+    font-size: 0.95rem;
+  }
+
+  .hero__mini-benefits .mini-benefit p {
+    font-size: 0.82rem;
+  }
+
+  /* Ensure hero copy + CTAs fit in first viewport: hide mini-benefits from first fold on most mobiles */
+  .hero__mini-benefits {
+    display: none;
+  }
+
+  /* Top bar becomes a compact marquee */
+  .topbar {
+    overflow: hidden;
+    padding: 0.28rem 0;
+  }
+
+  .topbar__content {
+    display: block;
+  }
+
+  .topbar__marquee {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .topbar__marquee > * {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .topbar__marquee::after {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    flex: 0 0 24px;
+  }
+
+  /* marquee track styles */
+  .topbar__marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-right: 6px;
+  }
+
+  .topbar__marquee-track {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  /* CSS animation marquee */
+  .topbar__marquee-track.is-animated {
+    animation-name: marquee;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+  }
+
+  .topbar__marquee-track.paused {
+    animation-play-state: paused !important;
+  }
+
+  @keyframes marquee {
+    from { transform: translate3d(0,0,0); }
+    to { transform: translate3d(calc(var(--marquee-translate, 0px) * -1),0,0); }
+  }
+
+  /* Improve touch hit area and ensure seamless fill */
+  .topbar__marquee-track .topbar__item {
+    padding-inline: 0.5rem;
+  }
+
+  .topbar__marquee-track .topbar__item {
+    flex: 0 0 auto;
+    display: inline-flex;
+  }
+
+  /* Hide the line-tags (buttons between arrows) on small screens */
+  .product-slider .line-tags {
+    display: none;
+  }
+
+  /* Overlay arrows on the sides, centered vertically relative to carousel cards */
+  .product-slider {
+    position: relative;
+  }
+
+  .product-slider__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    z-index: 20;
+  }
+
+  .product-slider__controls {
+    margin: 0 0 0.6rem;
+    display: block;
+  }
+
+  .product-slider__controls > .product-slider__button:first-of-type {
+    left: 8px;
+  }
+
+  .product-slider__controls > .product-slider__button:last-of-type {
+    right: 8px;
+  }
+
+  /* Footer compact layout */
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.4rem 0 1rem;
+  }
+
+  .footer__brand p {
+    max-width: none;
+    margin-bottom: 0.45rem;
+  }
+
+  .footer__social-links {
+    gap: 0.35rem;
+  }
+
+  .footer__logo {
+    width: 140px;
+    margin-bottom: 0.45rem;
+  }
+
+  .footer__bottom .container {
+    padding: 0.6rem 0;
+  }
+}
+
 .mini-benefit {
   display: flex;
   gap: 0.65rem;
@@ -1274,9 +1551,7 @@ p {
 
 /* Contact */
 .contact-layout {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 1rem;
+  display: block;
 }
 
 .contact-card,
@@ -1381,6 +1656,8 @@ p {
 }
 
 .contact-form {
+  max-width: 760px;
+  margin-inline: auto;
   padding: 1.35rem;
 }
 
@@ -1453,6 +1730,56 @@ p {
   transform: none;
 }
 
+.form-details-toggle {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  border: 0;
+  padding: 0.3rem;
+  background: transparent;
+  color: var(--blue-700);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.form-details-toggle > span:last-child {
+  display: inline-grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border: 1px solid rgba(21, 87, 214, 0.25);
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.form-details-toggle[aria-expanded="true"] > span:last-child {
+  transform: rotate(45deg);
+}
+
+.form-details[hidden] {
+  display: none;
+}
+
+.form-details {
+  margin-top: 0.65rem;
+}
+
+.form-actions--primary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.85rem;
+}
+
+.form-actions--secondary {
+  grid-template-columns: 1fr;
+  margin-top: 0.8rem;
+}
+
 .form-status {
   min-height: 1.3rem;
   margin: 0.8rem 0 0;
@@ -1489,6 +1816,35 @@ p {
   color: #fff;
   margin-bottom: 0.85rem;
   font-size: 1rem;
+}
+
+.footer__links-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.footer__links-toggle-icon {
+  display: none;
+}
+
+.footer__links-panel[hidden] {
+  display: none;
+}
+
+.footer__contact-panel[hidden],
+.footer__social-panel[hidden] {
+  display: none;
 }
 
 .footer__grid a,
@@ -1706,7 +2062,7 @@ p {
 
   .hero {
     min-height: auto;
-    padding: 4rem 0 3.5rem;
+    padding: 0.4rem 0 0.6rem;
   }
 
   .hero__layout {
@@ -1765,7 +2121,7 @@ p {
   }
 
   .hero {
-    padding: 17.8rem 0 3rem;
+    padding: 0.6rem 0 1rem;
   }
 
   .hero__mini-benefits {
@@ -1865,6 +2221,16 @@ p {
 
   .gallery-item {
     min-height: 150px;
+  }
+
+  .gallery-item figcaption {
+    left: 0.55rem;
+    right: 0.55rem;
+    bottom: 0.55rem;
+    max-width: calc(100% - 1.1rem);
+    padding: 0.32rem 0.52rem;
+    font-size: 0.72rem;
+    line-height: 1.12;
   }
 
   .floating-whatsapp {
@@ -2052,6 +2418,58 @@ p {
     text-align: center;
   }
 
+
+/* Final mobile hero layout: copy at the top, CTAs at the bottom, no overlaps. */
+@media (max-width: 1024px) {
+  .hero {
+    min-height: calc(100svh - 130px);
+    padding: 0.6rem 0;
+  }
+
+  .hero__layout,
+  .hero__copy {
+    min-height: calc(100svh - 142px);
+  }
+
+  .hero__copy {
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: clamp(1rem, 4vh, 2rem);
+  }
+
+  .hero__copy .eyebrow,
+  .hero__copy h1,
+  .hero__copy > p:not(.eyebrow) {
+    margin: 0;
+  }
+
+  .hero__copy .eyebrow {
+    margin-bottom: 0.2rem;
+    font-size: clamp(0.56rem, 2.65vw, 0.72rem);
+    letter-spacing: 0.09em;
+    white-space: nowrap;
+  }
+
+  .hero__copy h1 {
+    margin-bottom: 0.7rem;
+  }
+
+  .hero__copy > p:not(.eyebrow) {
+    max-width: 34ch;
+    line-height: 1.5;
+  }
+
+  .hero__actions {
+    position: static;
+    z-index: auto;
+    width: 100%;
+    margin-top: auto;
+    padding-bottom: 4.8rem;
+  }
+}
   .about-grid article {
     min-height: auto;
   }
@@ -2583,5 +3001,402 @@ p {
   .golden-product-card {
     flex-basis: min(78vw, 270px);
     min-height: 410px;
+  }
+}
+
+@media (max-width: 720px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    padding: 1.35rem 0 1.1rem;
+    text-align: center;
+  }
+
+  .footer__logo {
+    width: min(155px, 52%);
+    margin: 0 auto 0.45rem;
+  }
+
+  .footer__brand p {
+    max-width: 33ch;
+    margin: 0 auto;
+    font-size: 0.78rem;
+    line-height: 1.42;
+  }
+
+  .footer__nav,
+  .footer__contact,
+  .footer__social {
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer__links-toggle {
+    padding: 0.1rem 0;
+    font-size: 0.84rem;
+    justify-content: center;
+  }
+
+  .footer__links-toggle-icon {
+    display: inline-grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 50%;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .footer__links-toggle[aria-expanded="true"] .footer__links-toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .footer__links-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+  .footer__contact-panel,
+  .footer__social-panel {
+    margin-top: 0.8rem;
+  }
+
+  .footer__nav a {
+    width: 100%;
+    margin: 0;
+    font-size: 0.76rem;
+  }
+
+  .footer__grid h3 {
+    margin-bottom: 0.45rem;
+    font-size: 0.84rem;
+  }
+
+  .footer__contact p,
+  .footer__contact a {
+    margin: 0 auto 0.28rem;
+    font-size: 0.76rem;
+  }
+
+  .footer__social-links {
+    justify-content: center;
+    gap: 0.35rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .footer__social-links a {
+    padding: 0.32rem 0.55rem;
+    font-size: 0.7rem;
+  }
+
+  .footer__whatsapp {
+    margin: 0 auto;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.74rem;
+  }
+}
+
+/* Mobile hero: premium, image-led composition. Kept last to override legacy mobile rules. */
+@media (max-width: 1024px) {
+  .topbar {
+    padding: 0;
+  }
+
+  .topbar__content {
+    padding: 0;
+  }
+
+  .topbar__marquee,
+  .topbar__marquee-track .topbar__item {
+    min-height: 38px;
+  }
+
+  .topbar__marquee-track .topbar__item {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.78rem;
+  }
+
+  .header__content {
+    min-height: 82px;
+  }
+
+  .brand__logo {
+    max-width: clamp(132px, 38vw, 172px);
+    max-height: 58px;
+  }
+
+  .hero.section {
+    min-height: calc(100svh - 140px);
+    padding: 0;
+    background: #041936;
+    isolation: isolate;
+  }
+
+  .hero__layout {
+    min-height: calc(100svh - 140px);
+    width: min(100% - 2.5rem, var(--container));
+    display: flex;
+    align-items: stretch;
+  }
+
+  .hero-bg {
+    display: block;
+    inset: 0;
+    height: 100%;
+  }
+
+  .hero-bg picture,
+  .hero-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-bg img {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .hero-bg::after {
+    inset: 0;
+    height: auto;
+    background: linear-gradient(180deg, rgba(2, 15, 34, 0) 0%, rgba(3, 22, 51, 0.08) 33%, rgba(3, 22, 51, 0.86) 54%, #031832 74%, #031832 100%);
+  }
+
+  .hero__copy.hero-content {
+    width: 100%;
+    max-width: none;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: clamp(7.6rem, 26svh, 13.5rem) 0 clamp(1rem, 2.8svh, 1.6rem);
+    color: #fff;
+  }
+
+  .hero__copy .eyebrow {
+    margin: 0 0 0.45rem;
+    color: #2f7bff;
+    font-size: clamp(0.62rem, 2.55vw, 0.78rem);
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+    white-space: normal;
+  }
+
+  .hero__copy h1 {
+    max-width: 12ch;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2rem, 8.7vw, 3rem);
+    line-height: 0.99;
+    letter-spacing: 0;
+  }
+
+  .hero__copy .text-blue {
+    color: #2473f5;
+  }
+
+  .hero__copy .hero__description {
+    max-width: 35ch;
+    margin: 0.65rem 0 0;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(0.84rem, 3.55vw, 1rem);
+    line-height: 1.32;
+  }
+
+  .hero__actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
+
+  .hero__actions .btn {
+    min-width: 0;
+    min-height: 48px;
+    padding: 0.7rem 0.4rem;
+    border-radius: 12px;
+    font-size: clamp(0.78rem, 3.2vw, 0.95rem);
+    line-height: 1.05;
+  }
+
+  .hero__actions .btn--primary {
+    background: #1765e6;
+    box-shadow: none;
+  }
+
+  .hero__actions .btn--ghost {
+    border: 2px solid #1765e6;
+    background: #fff;
+    color: #1557d6;
+  }
+
+  .hero__mini-benefits {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 1rem 0 0;
+    overflow: visible;
+  }
+
+  .hero__mini-benefits .mini-benefit {
+    min-width: 0;
+    min-height: 58px;
+    display: grid;
+    grid-template-rows: 24px auto;
+    justify-items: center;
+    align-content: start;
+    gap: 0.28rem;
+    padding: 0 0.28rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .hero__mini-benefits .mini-benefit + .mini-benefit {
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .hero__mini-benefits .icon-badge {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+  }
+
+  .hero__mini-benefits .icon-badge svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.75;
+  }
+
+  .hero__mini-benefits .mini-benefit h3 {
+    margin: 0;
+    color: #fff;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(0.4rem, 1.55vw, 0.52rem);
+    line-height: 1.08;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .floating-whatsapp {
+    display: none;
+  }
+
+  .floating-whatsapp.is-visible {
+    display: grid;
+  }
+}
+
+@media (max-width: 380px), (max-height: 700px) {
+  .hero__copy.hero-content {
+    padding-top: clamp(5.5rem, 18svh, 8rem);
+  }
+
+  .hero__copy h1 {
+    font-size: clamp(1.78rem, 8.4vw, 2.25rem);
+  }
+
+  .hero__mini-benefits {
+    margin-top: 0.65rem;
+  }
+}
+
+/* Compact contact form on mobile: show essentials first. */
+@media (max-width: 720px) {
+  .contact-form {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .contact-form header h2 {
+    font-size: 1.45rem;
+  }
+
+  .contact-form header p {
+    margin: 0.2rem 0 0;
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .form-grid {
+    margin-top: 0.75rem;
+    gap: 0.6rem;
+  }
+
+  .form-grid--core {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid--core label:nth-child(-n + 2) {
+    grid-column: 1 / -1;
+  }
+
+  .form-grid label {
+    gap: 0.3rem;
+    font-size: 0.78rem;
+  }
+
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    min-height: 42px;
+    padding: 0.6rem 0.65rem;
+    font-size: 0.88rem;
+  }
+
+  .form-grid textarea {
+    min-height: 82px;
+  }
+
+  .form-actions--primary {
+    margin-top: 0.75rem;
+  }
+
+  .form-actions--primary .btn {
+    min-height: 48px;
+    padding-inline: 0.4rem;
+    font-size: 0.78rem;
+  }
+
+  .form-details-toggle {
+    margin-top: 0.55rem;
+    font-size: 0.8rem;
+  }
+
+  /* Tighten the handoff from team to contact and the minimized form to the footer. */
+  .team-section {
+    padding-bottom: 1.25rem;
+  }
+
+  .team-actions {
+    margin-top: 0.8rem;
+  }
+
+  #contacto.section {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .contact-form:has(.form-details[hidden]) {
+    padding-bottom: 0.65rem;
+  }
+
+  .contact-form:has(.form-details[hidden]) .form-status {
+    min-height: 0;
+    margin: 0;
   }
 }
