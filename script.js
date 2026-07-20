@@ -4,24 +4,190 @@ const nav = document.querySelector('.nav');
 const navMore = document.querySelector('.nav-more');
 const navMoreButton = document.querySelector('.nav-more-button');
 
-document.querySelectorAll('.footer__links-toggle').forEach((toggle) => {
+// Contenido editable desde Pages CMS. El HTML existente funciona como respaldo.
+const applyEditableContent = (content) => {
+  const hero = content.hero;
+  if (hero) {
+    const eyebrow = document.querySelector('.hero__copy .eyebrow');
+    const title = document.querySelector('.hero__copy h1');
+    const description = document.querySelector('.hero__description');
+    const desktopImage = document.querySelector('.hero-bg img');
+    const mobileImage = document.querySelector('.hero-bg source');
+    const buttons = document.querySelectorAll('.hero__actions .btn');
+
+    if (eyebrow && hero.eyebrow) eyebrow.textContent = hero.eyebrow;
+    if (title && hero.title && hero.highlight) {
+      const highlight = document.createElement('span');
+      highlight.className = 'text-blue';
+      highlight.textContent = hero.highlight;
+      title.replaceChildren(`${hero.title} `, highlight);
+    }
+    if (description && hero.description) description.textContent = hero.description;
+    if (desktopImage && hero.desktop_image) desktopImage.src = hero.desktop_image;
+    if (mobileImage && hero.mobile_image) mobileImage.srcset = hero.mobile_image;
+    if (buttons[0] && hero.primary_button) buttons[0].textContent = hero.primary_button;
+    if (buttons[1] && hero.secondary_button) buttons[1].textContent = hero.secondary_button;
+  }
+
+  document.querySelectorAll('.hero__mini-benefits .mini-benefit h3').forEach((heading, index) => {
+    const badge = content.trust_badges?.[index];
+    if (badge?.title) heading.textContent = badge.title;
+  });
+
+  const productTrack = document.querySelector('.product-grid');
+  if (productTrack && Array.isArray(content.products)) {
+    const cards = Array.from(productTrack.querySelectorAll('.product-card'));
+    const cardTemplate = cards[0];
+
+    content.products.forEach((product, index) => {
+      const card = cards[index] || cardTemplate?.cloneNode(true);
+      if (!card) return;
+      if (!cards[index]) productTrack.appendChild(card);
+
+      const image = card.querySelector('.product-card__media img');
+      const name = card.querySelector('h3');
+      const description = card.querySelector('.product-card__body p');
+      if (image) {
+        image.src = product.image || '';
+        image.alt = product.name || 'Producto Acabados Monza';
+      }
+      if (name) name.textContent = product.name || '';
+      if (description) description.textContent = product.description || '';
+    });
+
+    cards.slice(content.products.length).forEach((card) => card.remove());
+  }
+
+  const goldenTrack = document.querySelector('.golden-listing__grid');
+  if (goldenTrack && Array.isArray(content.golden_products)) {
+    const cards = Array.from(goldenTrack.querySelectorAll('.golden-product-card'));
+    const cardTemplate = cards[0];
+
+    content.golden_products.forEach((product, index) => {
+      const card = cards[index] || cardTemplate?.cloneNode(true);
+      if (!card) return;
+      if (!cards[index]) goldenTrack.appendChild(card);
+
+      const image = card.querySelector('img');
+      const name = card.querySelector('h3');
+      const description = card.querySelector('p');
+      if (image) {
+        image.src = product.image || '';
+        image.alt = product.name || 'Producto Línea Golden';
+      }
+      if (name) name.textContent = product.name || '';
+      if (description) description.textContent = product.description || '';
+    });
+
+    cards.slice(content.golden_products.length).forEach((card) => card.remove());
+  }
+
+  // Recalcula los controles de ambos carruseles después de agregar o quitar tarjetas.
+  window.dispatchEvent(new Event('resize'));
+
+  const contactTitle = document.querySelector('.contact-form header h2');
+  const contactDescription = document.querySelector('.contact-form header p');
+  if (contactTitle && content.contact?.title) contactTitle.textContent = content.contact.title;
+  if (contactDescription && content.contact?.description) contactDescription.textContent = content.contact.description;
+};
+
+fetch('content/site.json', { cache: 'no-store' })
+  .then((response) => {
+    if (!response.ok) throw new Error('No se pudo cargar el contenido editable.');
+    return response.json();
+  })
+  .then(applyEditableContent)
+  .catch(() => {
+    // Conserva el contenido incluido en el HTML si el archivo no está disponible.
+  });
+
+const footerMobileQuery = window.matchMedia('(max-width: 720px)');
+const footerLinkToggles = Array.from(document.querySelectorAll('.footer__links-toggle'));
+
+const syncFooterLinks = () => {
+  footerLinkToggles.forEach((toggle) => {
+    const panelId = toggle.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) return;
+
+    const isMobile = footerMobileQuery.matches;
+    const isExpanded = isMobile && toggle.dataset.mobileExpanded === 'true';
+    toggle.disabled = !isMobile;
+    toggle.setAttribute('aria-expanded', String(isMobile ? isExpanded : true));
+    panel.hidden = isMobile ? !isExpanded : false;
+  });
+};
+
+footerLinkToggles.forEach((toggle) => {
   const panelId = toggle.getAttribute('aria-controls');
   const panel = panelId ? document.getElementById(panelId) : null;
   if (!panel) return;
 
   toggle.addEventListener('click', () => {
+    if (!footerMobileQuery.matches) return;
     const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.dataset.mobileExpanded = String(!isExpanded);
     toggle.setAttribute('aria-expanded', String(!isExpanded));
     panel.hidden = isExpanded;
   });
 
   panel.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
+      if (!footerMobileQuery.matches) return;
+      toggle.dataset.mobileExpanded = 'false';
       toggle.setAttribute('aria-expanded', 'false');
       panel.hidden = true;
     });
   });
 });
+
+syncFooterLinks();
+footerMobileQuery.addEventListener('change', syncFooterLinks);
+
+// Visor de fichas técnicas
+const sheetModal = document.getElementById('sheet-modal');
+const sheetModalFrame = document.getElementById('sheet-modal-frame');
+const sheetModalTitle = document.getElementById('sheet-modal-title');
+const sheetModalDownload = document.querySelector('.sheet-modal__download');
+const sheetModalClose = document.querySelector('.sheet-modal__close');
+let activeSheetLink = null;
+
+if (sheetModal && sheetModalFrame && sheetModalTitle && sheetModalDownload && sheetModalClose) {
+  const closeSheetModal = () => sheetModal.close();
+
+  document.querySelectorAll('.sheet-grid a[href$=".pdf"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (typeof sheetModal.showModal !== 'function') return;
+
+      event.preventDefault();
+      const pdfUrl = link.getAttribute('href');
+      const sheetName = link.textContent.trim();
+      if (!pdfUrl) return;
+
+      activeSheetLink = link;
+      sheetModalTitle.textContent = sheetName;
+      sheetModalFrame.title = `Vista previa de la ficha técnica ${sheetName}`;
+      sheetModalFrame.src = pdfUrl;
+      sheetModalDownload.href = pdfUrl;
+      sheetModalDownload.setAttribute('download', pdfUrl.split('/').pop() || 'ficha-tecnica.pdf');
+      document.body.classList.add('is-sheet-modal-open');
+      sheetModal.showModal();
+    });
+  });
+
+  sheetModalClose.addEventListener('click', closeSheetModal);
+
+  sheetModal.addEventListener('click', (event) => {
+    if (event.target === sheetModal) closeSheetModal();
+  });
+
+  sheetModal.addEventListener('close', () => {
+    sheetModalFrame.removeAttribute('src');
+    document.body.classList.remove('is-sheet-modal-open');
+    activeSheetLink?.focus();
+    activeSheetLink = null;
+  });
+}
 
 /* Keep WhatsApp out of the mobile hero, then restore it after that first screen. */
 (function () {
@@ -202,8 +368,7 @@ if (lineCatalog) {
         '0-04 NATURAL — VELVETOK',
         '0-05 rosa — VELVETOK',
         'VSMZ-550 — VELVET SUEDE NEUTRO',
-        'FJMZ-570 — REPELENTE',
-        'Sin clave — Defender protect'
+        'FJMZ-570 — REPELENTE'
       ],
       ctaMessage: 'Hola Acabados Monza, quiero información de la línea FIJATONOS.'
     },

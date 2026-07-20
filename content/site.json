@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "eyebrow": "Productos técnicos para talleres y fabricantes",
+    "title": "Acabados especializados para calzado, piel y",
+    "highlight": "marroquinería.",
+    "description": "Brillos, tintas, protectores, suavizantes y soluciones técnicas con asesoría directa.",
+    "desktop_image": "assets/hero/home-banner4.webp",
+    "mobile_image": "assets/hero/banner_cel3.png",
+    "primary_button": "Ver catálogo",
+    "secondary_button": "Solicitar asesoría"
+  },
+  "trust_badges": [
+    { "title": "Calidad profesional" },
+    { "title": "Innovación científica" },
+    { "title": "Asesoría especializada" }
+  ],
+  "products": [
+    {
+      "name": "Eco Shine 25",
+      "image": "assets/products/eco-shine-25.jpg",
+      "description": "Fórmula avanzada base agua y solvente que proporciona acabados de alta calidad con excelente brillo, resistencia y durabilidad. Ofrece gran adhesión, flexibilidad y un tacto agradable, además de proteger contra los rayos UV, ayudando a conservar el color y la apariencia del material por más tiempo."
+    },
+    {
+      "name": "Datil-MA/MQ",
+      "image": "assets/products/datil-ma-mq.jpg",
+      "description": "Productos especializados para el acabado y coloreado de cantos, filos y bordes. Ideales para bolsas, carteras, cinturones y artículos de marroquinería, ofreciendo una amplia variedad de colores y acabados de alta calidad."
+    },
+    {
+      "name": "Valencia Cream",
+      "image": "assets/products/valencia-cream.jpg",
+      "description": "Mezcla especializada de ceras penetrantes, aditivos y colorantes diseñada para la restauración de pieles dañadas. Su fórmula proporciona brillo inmediato desde la aplicación, además de nutrir y revitalizar pieles secas, mejorando su apariencia, flexibilidad y durabilidad."
+    },
+    {
+      "name": "Humecta 800",
+      "image": "assets/products/humecta-800.jpg",
+      "description": "Materiales especializados para el acabado de tacones y suelas, diseñados para crear efectos rústicos y naturales. Su fórmula de alta penetración proporciona excelente fijación del color y gran resistencia a la humedad, garantizando acabados duraderos y de calidad."
+    },
+    {
+      "name": "Línea Fijatonos",
+      "image": "assets/products/linea-fijatonos.jpg",
+      "description": "Nutriente especializado para nobuk y gamuza que realza el color y mejora la apariencia natural de la piel. Su fórmula proporciona una agradable sensación de tacto cálido y elegante, además de ofrecer un efecto duradero que preserva la calidad y belleza del material después de su aplicación."
+    },
+    {
+      "name": "Línea Grasos",
+      "image": "assets/products/linea-grasos.jpg",
+      "description": "Mezcla de aceites de alta penetración y nutrición, diseñada para el tratamiento y acondicionamiento de pieles. Su fórmula hidrata profundamente sin dejar sensación pegajosa, proporcionando un tacto suave, húmedo y natural, además de mejorar la flexibilidad y apariencia del material."
+    },
+    {
+      "name": "Línea Lavadores",
+      "image": "assets/products/linea-lavadores.jpg",
+      "description": "Mezcla especializada de solventes diseñada para su uso en todo tipo de pieles y materiales sintéticos. Su fórmula ayuda a eliminar eficazmente marcas, rayones superficiales y residuos de adhesivos o pegamento en el calzado, sin afectar la apariencia del material."
+    },
+    {
+      "name": "Línea Auxiliares",
+      "image": "assets/products/linea-auxiliares.jpg",
+      "description": "Productos especializados para el acabado final del calzado. Ideales para realizar retoques, resanados y correcciones en pequeños detalles de cobertura, color y tonalidad, logrando una presentación uniforme y de alta calidad."
+    },
+    {
+      "name": "Línea Pre-formas",
+      "image": "assets/products/linea-preformas.jpg",
+      "description": "Tintas de alta gama para el coloreado y acabado de suelas de PVC, TR, Ranil, EVA, ABS y otros materiales. Ofrecen alta resistencia a la fricción, excelente adherencia y gran durabilidad, garantizando acabados de calidad superior."
+    }
+  ],
+  "golden_products": [
+    { "name": "Barcelona Cream", "image": "assets/golden/barcelona-cream-nueva.jpg", "description": "Crema fina, nutritiva y restauradora de tono." },
+    { "name": "Evolux Shine 1210", "image": "assets/golden/evolux-shine-1210-nueva.jpg", "description": "Brillo técnico con protección y tacto flexible." },
+    { "name": "Velvet", "image": "assets/golden/velvet-nueva.jpg", "description": "Tacto suave para acabados de apariencia fina." },
+    { "name": "Belle Lux 204", "image": "assets/golden/belle-lux-204-nueva.jpg", "description": "Lustre elegante para piezas terminadas." },
+    { "name": "Graso Sport", "image": "assets/golden/Graso.jpg", "description": "Acabado graso para piel de uso rudo." }
+  ],
+  "contact": {
+    "title": "Solicita asesoría técnica",
+    "description": "Cuéntanos lo esencial y te orientamos por WhatsApp."
+  }
+}
