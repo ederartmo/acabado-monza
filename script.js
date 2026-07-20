@@ -4,6 +4,80 @@ const nav = document.querySelector('.nav');
 const navMore = document.querySelector('.nav-more');
 const navMoreButton = document.querySelector('.nav-more-button');
 
+// Contenido editable desde Pages CMS. El HTML existente funciona como respaldo.
+const applyEditableContent = (content) => {
+  const hero = content.hero;
+  if (hero) {
+    const eyebrow = document.querySelector('.hero__copy .eyebrow');
+    const title = document.querySelector('.hero__copy h1');
+    const description = document.querySelector('.hero__description');
+    const desktopImage = document.querySelector('.hero-bg img');
+    const mobileImage = document.querySelector('.hero-bg source');
+    const buttons = document.querySelectorAll('.hero__actions .btn');
+
+    if (eyebrow && hero.eyebrow) eyebrow.textContent = hero.eyebrow;
+    if (title && hero.title && hero.highlight) {
+      const highlight = document.createElement('span');
+      highlight.className = 'text-blue';
+      highlight.textContent = hero.highlight;
+      title.replaceChildren(`${hero.title} `, highlight);
+    }
+    if (description && hero.description) description.textContent = hero.description;
+    if (desktopImage && hero.desktop_image) desktopImage.src = hero.desktop_image;
+    if (mobileImage && hero.mobile_image) mobileImage.srcset = hero.mobile_image;
+    if (buttons[0] && hero.primary_button) buttons[0].textContent = hero.primary_button;
+    if (buttons[1] && hero.secondary_button) buttons[1].textContent = hero.secondary_button;
+  }
+
+  document.querySelectorAll('.hero__mini-benefits .mini-benefit h3').forEach((heading, index) => {
+    const badge = content.trust_badges?.[index];
+    if (badge?.title) heading.textContent = badge.title;
+  });
+
+  document.querySelectorAll('.product-grid .product-card').forEach((card, index) => {
+    const product = content.products?.[index];
+    if (!product) return;
+    const image = card.querySelector('.product-card__media img');
+    const name = card.querySelector('h3');
+    const description = card.querySelector('.product-card__body p');
+    if (image && product.image) {
+      image.src = product.image;
+      image.alt = product.name || image.alt;
+    }
+    if (name && product.name) name.textContent = product.name;
+    if (description && product.description) description.textContent = product.description;
+  });
+
+  document.querySelectorAll('.golden-product-card').forEach((card, index) => {
+    const product = content.golden_products?.[index];
+    if (!product) return;
+    const image = card.querySelector('img');
+    const name = card.querySelector('h3');
+    const description = card.querySelector('p');
+    if (image && product.image) {
+      image.src = product.image;
+      image.alt = product.name || image.alt;
+    }
+    if (name && product.name) name.textContent = product.name;
+    if (description && product.description) description.textContent = product.description;
+  });
+
+  const contactTitle = document.querySelector('.contact-form header h2');
+  const contactDescription = document.querySelector('.contact-form header p');
+  if (contactTitle && content.contact?.title) contactTitle.textContent = content.contact.title;
+  if (contactDescription && content.contact?.description) contactDescription.textContent = content.contact.description;
+};
+
+fetch('content/site.json', { cache: 'no-store' })
+  .then((response) => {
+    if (!response.ok) throw new Error('No se pudo cargar el contenido editable.');
+    return response.json();
+  })
+  .then(applyEditableContent)
+  .catch(() => {
+    // Conserva el contenido incluido en el HTML si el archivo no está disponible.
+  });
+
 const footerMobileQuery = window.matchMedia('(max-width: 720px)');
 const footerLinkToggles = Array.from(document.querySelectorAll('.footer__links-toggle'));
 

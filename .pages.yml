@@ -1,0 +1,78 @@
+media:
+  - name: images
+    label: Fotografías
+    input: assets/uploads
+    output: /assets/uploads
+    categories: [image]
+    rename: safe
+
+content:
+  - name: site
+    label: Contenido del sitio
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: hero
+        label: Banner principal
+        type: object
+        fields:
+          - { name: eyebrow, label: Texto superior, type: string }
+          - { name: title, label: Título principal, type: string }
+          - { name: highlight, label: Texto azul del título, type: string }
+          - { name: description, label: Descripción, type: text }
+          - name: desktop_image
+            label: Foto para computadora y tablet
+            type: image
+            options: { media: images }
+          - name: mobile_image
+            label: Foto para celular
+            type: image
+            options: { media: images }
+          - { name: primary_button, label: Botón de catálogo, type: string }
+          - { name: secondary_button, label: Botón de asesoría, type: string }
+      - name: trust_badges
+        label: Sellos de confianza
+        type: object
+        list:
+          min: 3
+          max: 3
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: title, label: Texto, type: string }
+      - name: products
+        label: Productos principales
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{name}" }
+        fields:
+          - { name: name, label: Nombre, type: string }
+          - name: image
+            label: Fotografía
+            type: image
+            options: { media: images }
+          - { name: description, label: Descripción, type: text }
+      - name: golden_products
+        label: Productos Línea Golden
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{name}" }
+        fields:
+          - { name: name, label: Nombre, type: string }
+          - name: image
+            label: Fotografía
+            type: image
+            options: { media: images }
+          - { name: description, label: Descripción, type: text }
+      - name: contact
+        label: Formulario de contacto
+        type: object
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: description, label: Descripción, type: text }
+
+settings:
+  commit:
+    identity: user
+    templates:
+      update: "Actualiza contenido desde el panel"
