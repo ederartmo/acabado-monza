@@ -34,33 +34,56 @@ const applyEditableContent = (content) => {
     if (badge?.title) heading.textContent = badge.title;
   });
 
-  document.querySelectorAll('.product-grid .product-card').forEach((card, index) => {
-    const product = content.products?.[index];
-    if (!product) return;
-    const image = card.querySelector('.product-card__media img');
-    const name = card.querySelector('h3');
-    const description = card.querySelector('.product-card__body p');
-    if (image && product.image) {
-      image.src = product.image;
-      image.alt = product.name || image.alt;
-    }
-    if (name && product.name) name.textContent = product.name;
-    if (description && product.description) description.textContent = product.description;
-  });
+  const productTrack = document.querySelector('.product-grid');
+  if (productTrack && Array.isArray(content.products)) {
+    const cards = Array.from(productTrack.querySelectorAll('.product-card'));
+    const cardTemplate = cards[0];
 
-  document.querySelectorAll('.golden-product-card').forEach((card, index) => {
-    const product = content.golden_products?.[index];
-    if (!product) return;
-    const image = card.querySelector('img');
-    const name = card.querySelector('h3');
-    const description = card.querySelector('p');
-    if (image && product.image) {
-      image.src = product.image;
-      image.alt = product.name || image.alt;
-    }
-    if (name && product.name) name.textContent = product.name;
-    if (description && product.description) description.textContent = product.description;
-  });
+    content.products.forEach((product, index) => {
+      const card = cards[index] || cardTemplate?.cloneNode(true);
+      if (!card) return;
+      if (!cards[index]) productTrack.appendChild(card);
+
+      const image = card.querySelector('.product-card__media img');
+      const name = card.querySelector('h3');
+      const description = card.querySelector('.product-card__body p');
+      if (image) {
+        image.src = product.image || '';
+        image.alt = product.name || 'Producto Acabados Monza';
+      }
+      if (name) name.textContent = product.name || '';
+      if (description) description.textContent = product.description || '';
+    });
+
+    cards.slice(content.products.length).forEach((card) => card.remove());
+  }
+
+  const goldenTrack = document.querySelector('.golden-listing__grid');
+  if (goldenTrack && Array.isArray(content.golden_products)) {
+    const cards = Array.from(goldenTrack.querySelectorAll('.golden-product-card'));
+    const cardTemplate = cards[0];
+
+    content.golden_products.forEach((product, index) => {
+      const card = cards[index] || cardTemplate?.cloneNode(true);
+      if (!card) return;
+      if (!cards[index]) goldenTrack.appendChild(card);
+
+      const image = card.querySelector('img');
+      const name = card.querySelector('h3');
+      const description = card.querySelector('p');
+      if (image) {
+        image.src = product.image || '';
+        image.alt = product.name || 'Producto Línea Golden';
+      }
+      if (name) name.textContent = product.name || '';
+      if (description) description.textContent = product.description || '';
+    });
+
+    cards.slice(content.golden_products.length).forEach((card) => card.remove());
+  }
+
+  // Recalcula los controles de ambos carruseles después de agregar o quitar tarjetas.
+  window.dispatchEvent(new Event('resize'));
 
   const contactTitle = document.querySelector('.contact-form header h2');
   const contactDescription = document.querySelector('.contact-form header p');

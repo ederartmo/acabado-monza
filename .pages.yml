@@ -44,6 +44,7 @@ content:
         label: Productos principales
         type: object
         list:
+          min: 1
           collapsible: { collapsed: true, summary: "{name}" }
         fields:
           - { name: name, label: Nombre, type: string }
@@ -56,6 +57,7 @@ content:
         label: Productos Línea Golden
         type: object
         list:
+          min: 1
           collapsible: { collapsed: true, summary: "{name}" }
         fields:
           - { name: name, label: Nombre, type: string }
