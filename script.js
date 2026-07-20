@@ -4,24 +4,93 @@ const nav = document.querySelector('.nav');
 const navMore = document.querySelector('.nav-more');
 const navMoreButton = document.querySelector('.nav-more-button');
 
-document.querySelectorAll('.footer__links-toggle').forEach((toggle) => {
+const footerMobileQuery = window.matchMedia('(max-width: 720px)');
+const footerLinkToggles = Array.from(document.querySelectorAll('.footer__links-toggle'));
+
+const syncFooterLinks = () => {
+  footerLinkToggles.forEach((toggle) => {
+    const panelId = toggle.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) return;
+
+    const isMobile = footerMobileQuery.matches;
+    const isExpanded = isMobile && toggle.dataset.mobileExpanded === 'true';
+    toggle.disabled = !isMobile;
+    toggle.setAttribute('aria-expanded', String(isMobile ? isExpanded : true));
+    panel.hidden = isMobile ? !isExpanded : false;
+  });
+};
+
+footerLinkToggles.forEach((toggle) => {
   const panelId = toggle.getAttribute('aria-controls');
   const panel = panelId ? document.getElementById(panelId) : null;
   if (!panel) return;
 
   toggle.addEventListener('click', () => {
+    if (!footerMobileQuery.matches) return;
     const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.dataset.mobileExpanded = String(!isExpanded);
     toggle.setAttribute('aria-expanded', String(!isExpanded));
     panel.hidden = isExpanded;
   });
 
   panel.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
+      if (!footerMobileQuery.matches) return;
+      toggle.dataset.mobileExpanded = 'false';
       toggle.setAttribute('aria-expanded', 'false');
       panel.hidden = true;
     });
   });
 });
+
+syncFooterLinks();
+footerMobileQuery.addEventListener('change', syncFooterLinks);
+
+// Visor de fichas técnicas
+const sheetModal = document.getElementById('sheet-modal');
+const sheetModalFrame = document.getElementById('sheet-modal-frame');
+const sheetModalTitle = document.getElementById('sheet-modal-title');
+const sheetModalDownload = document.querySelector('.sheet-modal__download');
+const sheetModalClose = document.querySelector('.sheet-modal__close');
+let activeSheetLink = null;
+
+if (sheetModal && sheetModalFrame && sheetModalTitle && sheetModalDownload && sheetModalClose) {
+  const closeSheetModal = () => sheetModal.close();
+
+  document.querySelectorAll('.sheet-grid a[href$=".pdf"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (typeof sheetModal.showModal !== 'function') return;
+
+      event.preventDefault();
+      const pdfUrl = link.getAttribute('href');
+      const sheetName = link.textContent.trim();
+      if (!pdfUrl) return;
+
+      activeSheetLink = link;
+      sheetModalTitle.textContent = sheetName;
+      sheetModalFrame.title = `Vista previa de la ficha técnica ${sheetName}`;
+      sheetModalFrame.src = pdfUrl;
+      sheetModalDownload.href = pdfUrl;
+      sheetModalDownload.setAttribute('download', pdfUrl.split('/').pop() || 'ficha-tecnica.pdf');
+      document.body.classList.add('is-sheet-modal-open');
+      sheetModal.showModal();
+    });
+  });
+
+  sheetModalClose.addEventListener('click', closeSheetModal);
+
+  sheetModal.addEventListener('click', (event) => {
+    if (event.target === sheetModal) closeSheetModal();
+  });
+
+  sheetModal.addEventListener('close', () => {
+    sheetModalFrame.removeAttribute('src');
+    document.body.classList.remove('is-sheet-modal-open');
+    activeSheetLink?.focus();
+    activeSheetLink = null;
+  });
+}
 
 /* Keep WhatsApp out of the mobile hero, then restore it after that first screen. */
 (function () {
@@ -202,8 +271,7 @@ if (lineCatalog) {
         '0-04 NATURAL — VELVETOK',
         '0-05 rosa — VELVETOK',
         'VSMZ-550 — VELVET SUEDE NEUTRO',
-        'FJMZ-570 — REPELENTE',
-        'Sin clave — Defender protect'
+        'FJMZ-570 — REPELENTE'
       ],
       ctaMessage: 'Hola Acabados Monza, quiero información de la línea FIJATONOS.'
     },
