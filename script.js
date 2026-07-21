@@ -4,6 +4,227 @@ const nav = document.querySelector('.nav');
 const navMore = document.querySelector('.nav-more');
 const navMoreButton = document.querySelector('.nav-more-button');
 
+let updateLineCatalogContent = () => {};
+let refreshTeamDirectory = () => {};
+
+const renderTechnicalSheets = (section) => {
+  if (!section) return;
+
+  const layout = document.querySelector('.sheets-layout');
+  const header = layout?.querySelector('.section__head');
+  const grid = layout?.querySelector('.sheet-grid');
+  if (!layout || !header || !grid) return;
+
+  const eyebrow = header.querySelector('.eyebrow');
+  const title = header.querySelector('h2');
+  const description = header.querySelector('.section__text');
+  if (eyebrow && section.eyebrow) eyebrow.textContent = section.eyebrow;
+  if (title && section.title) title.textContent = section.title;
+  if (description && section.description) description.textContent = section.description;
+
+  if (!Array.isArray(section.items)) return;
+
+  const firstLink = grid.querySelector('a');
+  const iconMarkup = firstLink?.querySelector('.icon-badge')?.innerHTML || '';
+  const actionMarkup = firstLink?.querySelector('.sheet-action')?.innerHTML || iconMarkup;
+  const fragment = document.createDocumentFragment();
+
+  section.items.forEach((item) => {
+    if (!item?.name) return;
+    const link = document.createElement('a');
+    const hasFile = typeof item.file === 'string' && item.file.trim() !== '';
+    link.setAttribute('href', hasFile ? item.file : '#contacto');
+    link.setAttribute('aria-label', hasFile ? `Abrir ficha técnica ${item.name}` : `Solicitar ficha técnica ${item.name}`);
+    if (hasFile) {
+      link.dataset.sheetFile = 'true';
+      link.target = '_blank';
+      link.rel = 'noopener';
+    }
+
+    const icon = document.createElement('span');
+    icon.className = 'icon-badge';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = iconMarkup;
+
+    const name = document.createElement('span');
+    name.textContent = item.name;
+
+    const action = document.createElement('span');
+    action.className = 'sheet-action';
+    action.setAttribute('aria-hidden', 'true');
+    action.innerHTML = actionMarkup;
+
+    link.append(icon, name, action);
+    fragment.appendChild(link);
+  });
+
+  grid.replaceChildren(fragment);
+};
+
+const renderApplications = (section) => {
+  if (!section) return;
+
+  const container = document.querySelector('.applications');
+  if (!container) return;
+
+  const copy = container.querySelector('.applications__copy');
+  const eyebrow = copy?.querySelector('.eyebrow');
+  const title = copy?.querySelector('h2');
+  const subtitle = copy?.querySelector('.subtitle');
+  const description = copy?.querySelector(':scope > p:last-child');
+  if (eyebrow && section.eyebrow) eyebrow.textContent = section.eyebrow;
+  if (title && section.title) title.textContent = section.title;
+  if (subtitle && section.subtitle) subtitle.textContent = section.subtitle;
+  if (description && section.description) description.textContent = section.description;
+
+  const gallery = container.querySelector('.applications__gallery');
+  if (gallery && Array.isArray(section.gallery)) {
+    const fragment = document.createDocumentFragment();
+    section.gallery.forEach((item) => {
+      if (!item?.image) return;
+      const figure = document.createElement('figure');
+      figure.className = 'gallery-item';
+      const image = document.createElement('img');
+      image.src = item.image;
+      image.alt = item.alt || item.caption || 'Aplicación de productos Acabados Monza';
+      image.loading = 'lazy';
+      const caption = document.createElement('figcaption');
+      caption.textContent = item.caption || '';
+      figure.append(image, caption);
+      fragment.appendChild(figure);
+    });
+    gallery.replaceChildren(fragment);
+  }
+
+  const categoryCards = Array.from(container.querySelectorAll('.application-pill'));
+  if (Array.isArray(section.categories)) {
+    categoryCards.forEach((card, index) => {
+      const item = section.categories[index];
+      card.hidden = !item;
+      if (!item) return;
+      const cardTitle = card.querySelector('h3');
+      const cardDescription = card.querySelector('p');
+      if (cardTitle) cardTitle.textContent = item.title || '';
+      if (cardDescription) cardDescription.textContent = item.description || '';
+    });
+  }
+
+  const toneTitle = container.querySelector('.tone-info h3');
+  const toneDescription = container.querySelector('.tone-info p');
+  if (toneTitle && section.tone_title) toneTitle.textContent = section.tone_title;
+  if (toneDescription && section.tone_description) toneDescription.textContent = section.tone_description;
+
+  const toneRow = container.querySelector('.tone-row');
+  if (toneRow && Array.isArray(section.tones)) {
+    const fragment = document.createDocumentFragment();
+    section.tones.forEach((tone, index) => {
+      if (typeof tone !== 'string' || !tone.trim()) return;
+      const swatch = document.createElement('span');
+      swatch.className = 'tone-swatch';
+      swatch.style.setProperty('--tone', tone.trim());
+      swatch.title = `Tono ${index + 1}`;
+      swatch.setAttribute('aria-label', `Tono ${index + 1}`);
+      fragment.appendChild(swatch);
+    });
+    toneRow.replaceChildren(fragment);
+  }
+};
+
+const renderAbout = (section) => {
+  if (!section) return;
+
+  const layout = document.querySelector('.about-layout');
+  if (!layout) return;
+
+  const header = layout.querySelector('.section__head');
+  const eyebrow = header?.querySelector('.eyebrow');
+  const title = header?.querySelector('h2');
+  const subtitle = header?.querySelector('.subtitle');
+  if (eyebrow && section.eyebrow) eyebrow.textContent = section.eyebrow;
+  if (title && section.title) title.textContent = section.title;
+  if (subtitle && section.subtitle) subtitle.textContent = section.subtitle;
+
+  const cards = Array.from(layout.querySelectorAll('.about-grid article'));
+  if (Array.isArray(section.items)) {
+    cards.forEach((card, index) => {
+      const item = section.items[index];
+      card.hidden = !item;
+      if (!item) return;
+      const cardTitle = card.querySelector('h3');
+      const cardDescription = card.querySelector('p');
+      if (cardTitle) cardTitle.textContent = item.title || '';
+      if (cardDescription) cardDescription.textContent = item.description || '';
+    });
+  }
+
+  const image = layout.querySelector('.about-panel__image');
+  if (image && section.image) {
+    image.style.backgroundImage = `linear-gradient(180deg, rgba(15, 34, 63, 0), rgba(15, 34, 63, 0.12)), url("${String(section.image).replaceAll('"', '%22')}")`;
+  }
+  const location = layout.querySelector('.about-panel__stats strong');
+  const service = layout.querySelector('.about-panel__stats span');
+  if (location && section.location) location.textContent = section.location;
+  if (service && section.service) service.textContent = section.service;
+};
+
+const renderTeam = (section) => {
+  if (!section) return;
+
+  const teamSection = document.querySelector('.team-section');
+  const grid = teamSection?.querySelector('.team-grid');
+  if (!teamSection || !grid) return;
+
+  const header = teamSection.querySelector('.team-section__head');
+  const eyebrow = header?.querySelector('.eyebrow');
+  const title = header?.querySelector('h2');
+  const description = header?.querySelector('.section__text');
+  if (eyebrow && section.eyebrow) eyebrow.textContent = section.eyebrow;
+  if (title && section.title) title.textContent = section.title;
+  if (description && section.description) description.textContent = section.description;
+
+  if (!Array.isArray(section.members)) return;
+
+  const fragment = document.createDocumentFragment();
+  section.members.forEach((member) => {
+    if (!member?.name) return;
+    const card = document.createElement('article');
+    card.className = 'team-card';
+    card.dataset.teamArea = member.area || 'produccion';
+
+    const image = document.createElement('img');
+    image.src = member.image || '';
+    image.alt = [member.name, member.position].filter(Boolean).join(', ');
+    image.loading = 'lazy';
+
+    const body = document.createElement('div');
+    const name = document.createElement('h3');
+    name.textContent = member.name;
+    const position = document.createElement('p');
+    position.textContent = member.position || '';
+    body.append(name, position);
+
+    if (member.email) {
+      const email = document.createElement('a');
+      email.className = 'team-card__contact';
+      email.href = `mailto:${member.email}`;
+      email.textContent = member.email;
+      body.appendChild(email);
+    }
+    if (member.phone) {
+      const phone = document.createElement('a');
+      phone.className = 'team-card__contact';
+      phone.href = `tel:${String(member.phone).replace(/[^+\d]/g, '')}`;
+      phone.textContent = member.phone;
+      body.appendChild(phone);
+    }
+
+    card.append(image, body);
+    fragment.appendChild(card);
+  });
+  grid.replaceChildren(fragment);
+  refreshTeamDirectory();
+};
+
 // Contenido editable desde Pages CMS. El HTML existente funciona como respaldo.
 const applyEditableContent = (content) => {
   const hero = content.hero;
@@ -82,6 +303,12 @@ const applyEditableContent = (content) => {
     cards.slice(content.golden_products.length).forEach((card) => card.remove());
   }
 
+  updateLineCatalogContent(content.technical_catalog);
+  renderTechnicalSheets(content.technical_sheets);
+  renderApplications(content.applications);
+  renderAbout(content.about);
+  renderTeam(content.team);
+
   // Recalcula los controles de ambos carruseles después de agregar o quitar tarjetas.
   window.dispatchEvent(new Event('resize'));
 
@@ -154,25 +381,25 @@ let activeSheetLink = null;
 
 if (sheetModal && sheetModalFrame && sheetModalTitle && sheetModalDownload && sheetModalClose) {
   const closeSheetModal = () => sheetModal.close();
+  const sheetGrid = document.querySelector('.sheet-grid');
 
-  document.querySelectorAll('.sheet-grid a[href$=".pdf"]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      if (typeof sheetModal.showModal !== 'function') return;
+  sheetGrid?.addEventListener('click', (event) => {
+    const link = event.target.closest('a[data-sheet-file="true"], a[href$=".pdf"]');
+    if (!link || typeof sheetModal.showModal !== 'function') return;
 
-      event.preventDefault();
-      const pdfUrl = link.getAttribute('href');
-      const sheetName = link.textContent.trim();
-      if (!pdfUrl) return;
+    event.preventDefault();
+    const pdfUrl = link.getAttribute('href');
+    const sheetName = link.textContent.trim();
+    if (!pdfUrl) return;
 
-      activeSheetLink = link;
-      sheetModalTitle.textContent = sheetName;
-      sheetModalFrame.title = `Vista previa de la ficha técnica ${sheetName}`;
-      sheetModalFrame.src = pdfUrl;
-      sheetModalDownload.href = pdfUrl;
-      sheetModalDownload.setAttribute('download', pdfUrl.split('/').pop() || 'ficha-tecnica.pdf');
-      document.body.classList.add('is-sheet-modal-open');
-      sheetModal.showModal();
-    });
+    activeSheetLink = link;
+    sheetModalTitle.textContent = sheetName;
+    sheetModalFrame.title = `Vista previa de la ficha técnica ${sheetName}`;
+    sheetModalFrame.src = pdfUrl;
+    sheetModalDownload.href = pdfUrl;
+    sheetModalDownload.setAttribute('download', pdfUrl.split('/').pop() || 'ficha-tecnica.pdf');
+    document.body.classList.add('is-sheet-modal-open');
+    sheetModal.showModal();
   });
 
   sheetModalClose.addEventListener('click', closeSheetModal);
@@ -309,7 +536,7 @@ document.querySelectorAll('[data-product-slider]').forEach((slider) => {
 const lineCatalog = document.querySelector('[data-line-catalog]');
 
 if (lineCatalog) {
-  const lineCatalogData = {
+  let lineCatalogData = {
     spray: {
       label: 'SPRAY',
       title: 'Línea SPRAY',
@@ -435,7 +662,11 @@ if (lineCatalog) {
     }
   };
 
-  const lineTabs = Array.from(lineCatalog.querySelectorAll('[data-line-key]'));
+  let lineTabs = Array.from(lineCatalog.querySelectorAll('[data-line-key]'));
+  const lineCatalogNav = lineCatalog.querySelector('.product-catalog__nav');
+  const lineCatalogHeading = lineCatalog.querySelector('.product-listing__title');
+  const lineTabIcons = new Map(lineTabs.map((tab) => [tab.dataset.lineKey, tab.querySelector('.product-catalog__tab-icon')?.cloneNode(true)]));
+  const fallbackLineIcon = lineTabs[0]?.querySelector('.product-catalog__tab-icon')?.cloneNode(true);
   const lineLabel = lineCatalog.querySelector('[data-line-label]');
   const lineTitle = lineCatalog.querySelector('[data-line-title]');
   const lineDescription = lineCatalog.querySelector('[data-line-description]');
@@ -465,7 +696,13 @@ if (lineCatalog) {
     lineLabel.textContent = activeLine.label;
     lineTitle.textContent = activeLine.title;
     lineDescription.textContent = activeLine.description;
-    lineProducts.innerHTML = activeLine.products.map((product) => `<li>${product}</li>`).join('');
+    const productFragment = document.createDocumentFragment();
+    activeLine.products.forEach((product) => {
+      const item = document.createElement('li');
+      item.textContent = product;
+      productFragment.appendChild(item);
+    });
+    lineProducts.replaceChildren(productFragment);
     lineCta.href = buildWhatsAppUrl(activeLine);
     lineCta.setAttribute('aria-label', `Solicitar información por WhatsApp para ${activeLine.title}`);
 
@@ -476,12 +713,49 @@ if (lineCatalog) {
     });
   }
 
-  lineTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const key = tab.dataset.lineKey;
-      if (!key) return;
-      setActiveLine(key);
+  updateLineCatalogContent = (catalog) => {
+    if (!catalog || !Array.isArray(catalog.lines) || !catalog.lines.length || !lineCatalogNav) return;
+    if (lineCatalogHeading && catalog.title) lineCatalogHeading.textContent = catalog.title;
+
+    const nextData = {};
+    const fragment = document.createDocumentFragment();
+    catalog.lines.forEach((line, index) => {
+      const key = line.key || `linea-${index + 1}`;
+      nextData[key] = {
+        label: line.label || line.tab || '',
+        title: line.title || line.tab || '',
+        description: line.description || '',
+        products: Array.isArray(line.products) ? line.products : [],
+        ctaMessage: line.cta_message || ''
+      };
+
+      const tab = document.createElement('button');
+      tab.className = `product-catalog__tab${index === 0 ? ' is-active' : ''}`;
+      tab.type = 'button';
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', String(index === 0));
+      tab.dataset.lineKey = key;
+
+      const icon = lineTabIcons.get(key)?.cloneNode(true) || fallbackLineIcon?.cloneNode(true);
+      if (icon) tab.appendChild(icon);
+      const label = document.createElement('span');
+      label.textContent = line.tab || line.label || line.title || `Línea ${index + 1}`;
+      tab.appendChild(label);
+      fragment.appendChild(tab);
     });
+
+    lineCatalogData = nextData;
+    lineCatalogNav.replaceChildren(fragment);
+    lineTabs = Array.from(lineCatalogNav.querySelectorAll('[data-line-key]'));
+    setActiveLine(lineTabs[0]?.dataset.lineKey);
+  };
+
+  lineCatalogNav?.addEventListener('click', (event) => {
+    const tab = event.target.closest('[data-line-key]');
+    if (!tab || !lineCatalogNav.contains(tab)) return;
+    const key = tab.dataset.lineKey;
+    if (!key) return;
+    setActiveLine(key);
   });
 
   if (catalogToggle) {
@@ -568,7 +842,7 @@ document.querySelectorAll('[data-golden-products-slider]').forEach((slider) => {
   updateGoldenProductButtons();
 });
 
-const teamCards = Array.from(document.querySelectorAll('.team-card'));
+let teamCards = Array.from(document.querySelectorAll('.team-card'));
 const teamFilters = Array.from(document.querySelectorAll('[data-team-filter]'));
 const teamShowMore = document.querySelector('.team-show-more');
 let teamExpanded = false;
@@ -592,6 +866,14 @@ function updateTeamDirectory() {
     teamShowMore.textContent = teamExpanded ? 'Ver menos' : 'Ver equipo completo';
   }
 }
+
+refreshTeamDirectory = () => {
+  teamCards = Array.from(document.querySelectorAll('.team-card'));
+  teamExpanded = false;
+  activeTeamFilter = 'todos';
+  teamFilters.forEach((filter) => filter.classList.toggle('is-active', filter.dataset.teamFilter === 'todos'));
+  updateTeamDirectory();
+};
 
 if (teamCards.length) {
   updateTeamDirectory();

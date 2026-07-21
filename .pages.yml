@@ -5,6 +5,13 @@ media:
     output: /assets/uploads
     categories: [image]
     rename: safe
+  - name: documents
+    label: Fichas técnicas PDF
+    input: assets/technical-sheets
+    output: /assets/technical-sheets
+    categories: [document]
+    extensions: [pdf]
+    rename: safe
 
 content:
   - name: site
@@ -66,6 +73,150 @@ content:
             type: image
             options: { media: images }
           - { name: description, label: Descripción, type: text }
+      - name: technical_catalog
+        label: Catálogo técnico por líneas
+        type: object
+        fields:
+          - { name: title, label: Título de la sección, type: string }
+          - name: lines
+            label: Líneas del catálogo
+            type: object
+            list:
+              min: 1
+              collapsible: { collapsed: true, summary: "{tab}" }
+            fields:
+              - name: key
+                label: Clave interna
+                type: string
+                readonly: true
+                description: No se modifica; conserva el icono y el filtro de la línea.
+              - { name: tab, label: Nombre corto de la pestaña, type: string }
+              - { name: label, label: Etiqueta superior, type: string }
+              - { name: title, label: Título de la línea, type: string }
+              - { name: description, label: Descripción, type: text }
+              - name: products
+                label: Productos de la línea
+                type: string
+                list: true
+              - { name: cta_message, label: Mensaje para WhatsApp, type: text }
+      - name: technical_sheets
+        label: Fichas técnicas
+        type: object
+        fields:
+          - { name: eyebrow, label: Texto superior, type: string }
+          - { name: title, label: Título, type: string }
+          - { name: description, label: Descripción, type: text }
+          - name: items
+            label: Archivos PDF
+            type: object
+            list:
+              min: 1
+              collapsible: { collapsed: true, summary: "{name}" }
+            fields:
+              - { name: name, label: Nombre visible, type: string }
+              - name: file
+                label: Archivo PDF
+                type: file
+                required: false
+                description: Si se deja vacío, el botón enviará al formulario de contacto.
+                options:
+                  media: documents
+                  extensions: [pdf]
+                  categories: [document]
+      - name: applications
+        label: Aplicaciones y colores
+        type: object
+        fields:
+          - { name: eyebrow, label: Texto superior, type: string }
+          - { name: title, label: Título, type: string }
+          - { name: subtitle, label: Subtítulo azul, type: string }
+          - { name: description, label: Descripción, type: text }
+          - name: gallery
+            label: Galería de aplicaciones
+            type: object
+            list:
+              min: 1
+              max: 4
+              collapsible: { collapsed: true, summary: "{caption}" }
+            fields:
+              - name: image
+                label: Fotografía
+                type: image
+                options: { media: images }
+              - { name: caption, label: Texto sobre la fotografía, type: string }
+              - { name: alt, label: Descripción accesible, type: string }
+          - name: categories
+            label: Tipos de aplicación
+            type: object
+            list:
+              min: 1
+              max: 4
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Nombre, type: string }
+              - { name: description, label: Descripción, type: text }
+          - { name: tone_title, label: Título del muestrario, type: string }
+          - { name: tone_description, label: Descripción del muestrario, type: text }
+          - name: tones
+            label: Colores del muestrario
+            type: string
+            list: true
+            description: Use códigos hexadecimales, por ejemplo #BD497A.
+      - name: about
+        label: Nosotros
+        type: object
+        fields:
+          - { name: eyebrow, label: Texto superior, type: string }
+          - { name: title, label: Título, type: string }
+          - { name: subtitle, label: Subtítulo, type: string }
+          - name: items
+            label: Historia, misión, visión y valores
+            type: object
+            list:
+              min: 4
+              max: 4
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: description, label: Texto, type: text }
+          - name: image
+            label: Fotografía del equipo
+            type: image
+            options: { media: images }
+          - { name: location, label: Ubicación, type: string }
+          - { name: service, label: Mensaje de servicio, type: text }
+      - name: team
+        label: Equipo Monza
+        type: object
+        fields:
+          - { name: eyebrow, label: Texto superior, type: string }
+          - { name: title, label: Título, type: string }
+          - { name: description, label: Descripción, type: text }
+          - name: members
+            label: Integrantes
+            type: object
+            list:
+              min: 1
+              collapsible: { collapsed: true, summary: "{name}" }
+            fields:
+              - { name: name, label: Nombre, type: string }
+              - { name: position, label: Puesto o texto visible, type: string }
+              - name: area
+                label: Área para el filtro
+                type: select
+                options:
+                  values:
+                    - { name: produccion, label: Producción }
+                    - { name: laboratorio, label: Laboratorio }
+                    - { name: reparto, label: Reparto }
+                    - { name: administracion, label: Administración }
+                    - { name: comercial, label: Comercial }
+              - name: image
+                label: Fotografía
+                type: image
+                options: { media: images }
+              - { name: email, label: Correo, type: string, required: false }
+              - { name: phone, label: Teléfono, type: string, required: false }
       - name: contact
         label: Formulario de contacto
         type: object
