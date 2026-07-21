@@ -68,6 +68,174 @@
     { "name": "Belle Lux 204", "image": "assets/golden/belle-lux-204-nueva.jpg", "description": "Lustre elegante para piezas terminadas." },
     { "name": "Graso Sport", "image": "assets/golden/Graso.jpg", "description": "Acabado graso para piel de uso rudo." }
   ],
+  "technical_catalog": {
+    "title": "Catálogo técnico por líneas",
+    "lines": [
+      {
+        "key": "spray",
+        "tab": "Spray",
+        "label": "SPRAY",
+        "title": "Línea SPRAY",
+        "description": "Listado oficial de productos de la línea SPRAY.",
+        "products": ["11-1 NEUTRO — BELLE LUX", "47-7 NEUTRO — BELLE LUX", "02-0 — BRILLO GLOSS", "WXMZ-1000 — WAXI NEUTRO", "SMZ-24 — WHITE LUX NEUTRO", "SAMZ-309 — OPTIMA NEUTRO", "SAMZ-20 — SPRAY NEUTRO", "WFMZ-1035 — WAX FILL NEUTRO", "SFP-800 — TOP CREAM SEMI-MATE", "CMZ-612 — CREMA ECO TOP UNIVERSAL", "SAMZ-260 — BRILLO P/SOLE NEUTRO"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea SPRAY."
+      },
+      {
+        "key": "cremas",
+        "tab": "Cremas",
+        "label": "CREMAS",
+        "title": "Línea CREMAS",
+        "description": "Listado oficial de productos de la línea CREMAS.",
+        "products": ["CMZ-617 — DIJON CREAM", "CNFP-700 — CREMA ANTIQUE NATURAL", "Sin clave — Delica cream", "CMZ-616 — SHINE CREAM NEUTRO", "Sin clave — Basco top", "CFP-105 — CREMA P/SINTETICO"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea CREMAS."
+      },
+      {
+        "key": "lavadores",
+        "tab": "Lavadores / Limpiadores",
+        "label": "LAVADORES / LIMPIADORES",
+        "title": "Línea LAVADORES / LIMPIADORES",
+        "description": "Listado oficial de productos de la línea LAVADORES / LIMPIADORES.",
+        "products": ["LMZ-2691 — LAVADOR", "LCH-X30 — LAVADOR P/CHAROL", "LFP-3141 — LAVADOR P/PEGAMENTO", "LSFP-015 — LAVADOR P/PEG.PVC", "LFP-2400 — LAVADOR", "AC-51 — ACTIVADOR NORMAL", "ACFP-61 — LIMPIADOR AC", "LMZ-777 — LAVADOR QUITA-RAYA", "LFP-2426 SP — LAVADOR QUITA-RAYA"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea LAVADORES / LIMPIADORES."
+      },
+      {
+        "key": "fijatonos",
+        "tab": "Fijatonos",
+        "label": "FIJATONOS",
+        "title": "Línea FIJATONOS",
+        "description": "Listado oficial de productos de la línea FIJATONOS.",
+        "products": ["0-04 NATURAL — VELVETOK", "0-05 rosa — VELVETOK", "VSMZ-550 — VELVET SUEDE NEUTRO", "FJMZ-570 — REPELENTE"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea FIJATONOS."
+      },
+      {
+        "key": "grasos",
+        "tab": "Grasos",
+        "label": "GRASOS",
+        "title": "Línea GRASOS",
+        "description": "Listado oficial de productos de la línea GRASOS.",
+        "products": ["GFP-160 — SPRAY TACTO GRASO", "Sin clave — Eco graso", "Sin clave — Grease oil", "Sin clave — Grease-oil-90", "Sin clave — Cream graso", "Sin clave — Oíl neutro"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea GRASOS."
+      },
+      {
+        "key": "reparadores",
+        "tab": "Reparadores",
+        "label": "REPARADORES",
+        "title": "Línea REPARADORES",
+        "description": "Listado oficial de productos de la línea REPARADORES.",
+        "products": ["Pigmentos", "Farbern", "Compactos", "Estucos", "Resanador"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea REPARADORES."
+      },
+      {
+        "key": "marroquineria",
+        "tab": "Marroquinera",
+        "label": "MARROQUINERA",
+        "title": "Línea MARROQUINERA",
+        "description": "Listado oficial de productos de la línea MARROQUINERA.",
+        "products": ["Dátil MA", "Dátil CU", "Dátil LQ", "Tinta plastificante", "Sellador"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea MARROQUINERA."
+      },
+      {
+        "key": "preacabados",
+        "tab": "Pre-acabados",
+        "label": "PRE-ACABADOS",
+        "title": "Línea PRE-ACABADOS",
+        "description": "Listado oficial de productos de la línea PRE-ACABADOS.",
+        "products": ["Stein", "Tinta de cantos", "Tapaporos", "Pielera", "Pre Fondo", "Tinta cerco"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea PRE-ACABADOS."
+      },
+      {
+        "key": "auxiliares",
+        "tab": "Auxiliares",
+        "label": "AUXILIARES",
+        "title": "Línea AUXILIARES",
+        "description": "Listado oficial de productos de la línea AUXILIARES.",
+        "products": ["Acondicionador", "Masitas", "Crayones", "Cosméticos polvo", "Cosmético líquido", "Humectantes", "Suavizadores", "Cambra", "Flor fix", "Charolinas", "Metálicos"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea AUXILIARES."
+      },
+      {
+        "key": "preformas",
+        "tab": "Pre-formas",
+        "label": "PRE-FORMAS",
+        "title": "Línea PRE-FORMAS",
+        "description": "Listado oficial de productos de la línea PRE-FORMAS.",
+        "products": ["Tinta Eva", "Tinta ranil", "Tinta ABS", "Matizantes", "Bloming", "Primer"],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea PRE-FORMAS."
+      }
+    ]
+  },
+  "technical_sheets": {
+    "eyebrow": "Fichas técnicas",
+    "title": "Información técnica por línea de producto.",
+    "description": "Solicita las fichas técnicas de nuestros productos y recibe asesoría para elegir el acabado ideal según tu material, proceso y resultado esperado.",
+    "items": [
+      { "name": "Spray de agua", "file": "assets/technical-sheets/ficha-spray-agua.pdf" },
+      { "name": "Spray de solvente", "file": "assets/technical-sheets/ficha-spray-solvente.pdf" },
+      { "name": "Cremas", "file": "assets/technical-sheets/ficha-cremas.pdf" },
+      { "name": "Lavadores / Limpiadores", "file": "assets/technical-sheets/ficha-lavadores-limpiadores.pdf" },
+      { "name": "Línea Golden", "file": "" },
+      { "name": "Marroquinería", "file": "assets/technical-sheets/ficha-marroquineria.pdf" },
+      { "name": "Fijatonos", "file": "assets/technical-sheets/ficha-fijatonos.pdf" },
+      { "name": "Auxiliares", "file": "assets/technical-sheets/ficha-auxiliares.pdf" },
+      { "name": "Pre-acabados", "file": "assets/technical-sheets/ficha-pre-acabados.pdf" },
+      { "name": "Grasos", "file": "assets/technical-sheets/ficha-grasos.pdf" },
+      { "name": "Reparadores", "file": "assets/technical-sheets/ficha-reparadores.pdf" },
+      { "name": "Pre-formas", "file": "assets/technical-sheets/ficha-preformas.pdf" }
+    ]
+  },
+  "applications": {
+    "eyebrow": "Acabados Monza",
+    "title": "Aplicaciones y colores",
+    "subtitle": "Resultados reales y variedad de tonos para calzado, piel y marroquinería.",
+    "description": "Acabados de alta calidad que realzan la belleza, protegen y dan vida a cada material. Amplia gama de colores y acabados para que tus productos destaquen con identidad propia.",
+    "gallery": [
+      { "image": "assets/applications/1.webp", "caption": "Aplicaciones en calzado", "alt": "Botas, muestrario de pieles y productos Acabados Monza" },
+      { "image": "assets/applications/2.webp", "caption": "Pieles y tonos", "alt": "Muestrario de pieles en distintos tonos" },
+      { "image": "assets/applications/3.webp", "caption": "Muestrario de colores", "alt": "Muestrario circular de colores Acabados Monza" },
+      { "image": "assets/applications/zapato.webp", "caption": "Acabados para calzado", "alt": "Zapato café sobre muestras de piel" }
+    ],
+    "categories": [
+      { "title": "Calzado", "description": "Acabados que realzan cada detalle." },
+      { "title": "Marroquinería", "description": "Color, protección y estilo para cada pieza." },
+      { "title": "Piel y sintéticos", "description": "Fórmulas especializadas para todo tipo de piel." },
+      { "title": "Gamuza y nobuk", "description": "Suavidad, uniformidad y protección duradera." }
+    ],
+    "tone_title": "Muestrario de tonos",
+    "tone_description": "Variedad de colores para dar vida a tus creaciones.",
+    "tones": ["#BD497A", "#8D3344", "#753E73", "#BA8E79", "#B8603A", "#C39639", "#878D6B", "#4E4034", "#24414D", "#436B67", "#25325F", "#15161A", "#2A1E1F", "#642E2B", "#8A6C50"]
+  },
+  "about": {
+    "eyebrow": "Nosotros",
+    "title": "Experiencia técnica al servicio del taller y la fábrica.",
+    "subtitle": "Historia, misión, visión y valores",
+    "items": [
+      { "title": "Historia", "description": "Acabados Monza es una empresa de León, Guanajuato, fundada el 2 de febrero de 2021. Nos especializamos en la fabricación y comercialización de acabados para calzado y productos químicos de alta calidad para la industria." },
+      { "title": "Misión", "description": "Brindar soluciones innovadoras y de alta calidad en acabados para calzado y materiales alternativos, con productos que realcen la estética, durabilidad y valor de los artículos de nuestros clientes." },
+      { "title": "Visión", "description": "Ser una empresa líder a nivel nacional en el desarrollo de acabados para calzado y materiales alternativos, reconocida por su innovación, calidad y excelencia en el servicio." },
+      { "title": "Valores", "description": "Calidad, innovación, responsabilidad, respeto, puntualidad, trabajo en equipo y orientación al cliente." }
+    ],
+    "image": "assets/team/equipo.webp",
+    "location": "León, Gto.",
+    "service": "Asesoría técnica para procesos reales de acabado."
+  },
+  "team": {
+    "eyebrow": "Equipo Monza",
+    "title": "Personas que acompañan cada proceso.",
+    "description": "Nuestro equipo acompaña cada etapa: producción, laboratorio, reparto, administración y atención comercial.",
+    "members": [
+      { "name": "Jair Guerrero", "position": "Producción", "area": "produccion", "image": "assets/vendors/integrante1.webp", "email": "", "phone": "" },
+      { "name": "Emmanuel Martinez", "position": "Producción", "area": "produccion", "image": "assets/vendors/integrante2.webp", "email": "", "phone": "" },
+      { "name": "Edwen Martinez", "position": "Producción", "area": "produccion", "image": "assets/vendors/integrante3.webp", "email": "", "phone": "" },
+      { "name": "Nataly Gomez", "position": "Administración", "area": "administracion", "image": "assets/vendors/integrante4.webp", "email": "", "phone": "" },
+      { "name": "Vanessa Ibarra", "position": "Administración", "area": "administracion", "image": "assets/vendors/integrante5.webp", "email": "", "phone": "" },
+      { "name": "Antonio Soto", "position": "Reparto", "area": "reparto", "image": "assets/vendors/integrante6.webp", "email": "", "phone": "" },
+      { "name": "Fernando Guerrero", "position": "Reparto", "area": "reparto", "image": "assets/vendors/integrante7.webp", "email": "", "phone": "" },
+      { "name": "Juan Manuel Mata Jaramillo", "position": "Comercial", "area": "comercial", "image": "assets/vendors/integrante8.webp", "email": "acabadosmonza.ventas1@hotmail.com", "phone": "477 525 3413" },
+      { "name": "Alexis Zavala", "position": "Comercial", "area": "comercial", "image": "assets/vendors/integrante9.webp", "email": "acabadosmonza.ventas2@hotmail.com", "phone": "720 248 8376" },
+      { "name": "Aldo López", "position": "Comercial", "area": "comercial", "image": "assets/vendors/integrante10.webp", "email": "acabadosmonza.ventas3@hotmail.com", "phone": "729 971 9963" },
+      { "name": "Luis Rangel", "position": "Comercial", "area": "comercial", "image": "assets/vendors/integrante11.webp", "email": "acabadosmonza.ventas4@hotmail.com", "phone": "720 467 4849" },
+      { "name": "Jessica Almaguer", "position": "Laboratorio", "area": "laboratorio", "image": "assets/vendors/integrante12.webp", "email": "", "phone": "" }
+    ]
+  },
   "contact": {
     "title": "Solicita asesoría técnica",
     "description": "Cuéntanos lo esencial y te orientamos por WhatsApp."
