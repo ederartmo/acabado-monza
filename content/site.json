@@ -1,9 +1,9 @@
 {
   "hero": {
     "eyebrow": "Productos técnicos para talleres y fabricantes",
-    "title": "Acabados especializados para calzado, piel y",
-    "highlight": "marroquinería.",
-    "description": "Brillos, tintas, protectores, suavizantes y soluciones técnicas con asesoría directa.",
+    "title": "Acabados especializados para calzado y marroquinería",
+    "highlight": "Para piel y materiales sintético",
+    "description": "Sprays, Cremas, Lavadores/Limpiadores, Fijatonos, Grasos, Reparadores, Marroquinera, Pre-acabados, Auxiliares, Pre- formas y soluciones técnicas con asesoría directa.",
     "desktop_image": "assets/hero/home-banner4.webp",
     "mobile_image": "assets/hero/banner_cel3.png",
     "primary_button": "Ver catálogo",
@@ -22,60 +22,60 @@
   ],
   "products": [
     {
-      "name": "Eco Shine 25",
+      "name": "Sprays",
       "image": "assets/products/eco-shine-25.jpg",
-      "description": "Fórmula avanzada base agua y solvente que proporciona acabados de alta calidad con excelente brillo, resistencia y durabilidad. Ofrece gran adhesión, flexibilidad y un tacto agradable, además de proteger contra los rayos UV, ayudando a conservar el color y la apariencia del material por más tiempo."
+      "description": "Fórmula base agua y solvente con excelente brillo, adhesión, flexibilidad y resistencia. Protege contra rayos UV para conservar el color y la apariencia del material."
     },
     {
-      "name": "Datil-MA/MQ",
-      "image": "assets/products/datil-ma-mq.jpg",
-      "description": "Productos especializados para el acabado y coloreado de cantos, filos y bordes. Ideales para bolsas, carteras, cinturones y artículos de marroquinería, ofreciendo una amplia variedad de colores y acabados de alta calidad."
-    },
-    {
-      "name": "Valencia Cream",
+      "name": "Cremas",
       "image": "assets/products/valencia-cream.jpg",
-      "description": "Mezcla especializada de ceras penetrantes, aditivos y colorantes diseñada para la restauración de pieles dañadas. Su fórmula proporciona brillo inmediato desde la aplicación, además de nutrir y revitalizar pieles secas, mejorando su apariencia, flexibilidad y durabilidad."
+      "description": "Mezcla de ceras, aditivos y colorantes que restaura pieles dañadas, proporcionando brillo inmediato, nutrición y mayor durabilidad."
     },
     {
-      "name": "Humecta 800",
-      "image": "assets/products/humecta-800.jpg",
-      "description": "Materiales especializados para el acabado de tacones y suelas, diseñados para crear efectos rústicos y naturales. Su fórmula de alta penetración proporciona excelente fijación del color y gran resistencia a la humedad, garantizando acabados duraderos y de calidad."
-    },
-    {
-      "name": "Línea Fijatonos",
-      "image": "assets/products/linea-fijatonos.jpg",
-      "description": "Nutriente especializado para nobuk y gamuza que realza el color y mejora la apariencia natural de la piel. Su fórmula proporciona una agradable sensación de tacto cálido y elegante, además de ofrecer un efecto duradero que preserva la calidad y belleza del material después de su aplicación."
-    },
-    {
-      "name": "Línea Grasos",
-      "image": "assets/products/linea-grasos.jpg",
-      "description": "Mezcla de aceites de alta penetración y nutrición, diseñada para el tratamiento y acondicionamiento de pieles. Su fórmula hidrata profundamente sin dejar sensación pegajosa, proporcionando un tacto suave, húmedo y natural, además de mejorar la flexibilidad y apariencia del material."
-    },
-    {
-      "name": "Línea Lavadores",
+      "name": "Lavadores",
       "image": "assets/products/linea-lavadores.jpg",
-      "description": "Mezcla especializada de solventes diseñada para su uso en todo tipo de pieles y materiales sintéticos. Su fórmula ayuda a eliminar eficazmente marcas, rayones superficiales y residuos de adhesivos o pegamento en el calzado, sin afectar la apariencia del material."
+      "description": "Mezcla de solventes que elimina marcas, rayones superficiales y residuos de pegamento en pieles en materiales sintéticos sin dañar su apariencia."
     },
     {
-      "name": "Línea Auxiliares",
+      "name": "Fijatonos",
+      "image": "assets/products/linea-fijatonos.jpg",
+      "description": "Nutriente para nobuk y gamuza que realza el color, mejora la apariencia natural y proporciona un tacto cálido con efecto duradero."
+    },
+    {
+      "name": "Grasos",
+      "image": "assets/products/linea-grasos.jpg",
+      "description": "Mezcla de aceites de alta penetración que hidrata, nutre y mejora la flexibilidad de la piel, dejando un tacto suave y natural."
+    },
+    {
+      "name": "Marroquinería",
+      "image": "assets/products/datil-ma-mq.jpg",
+      "description": "Productos para el acabado y coloreado de cantos, filos y bordes en artículos de marroquinería, con una amplia variedad de colores y acabados de alta calidad."
+    },
+    {
+      "name": "Auxiliares",
       "image": "assets/products/linea-auxiliares.jpg",
-      "description": "Productos especializados para el acabado final del calzado. Ideales para realizar retoques, resanados y correcciones en pequeños detalles de cobertura, color y tonalidad, logrando una presentación uniforme y de alta calidad."
+      "description": "Productos para el acabado final del calzado, ideales para retoques, resanados y correcciones de color, cobertura y tonalidad, logrando un acabado uniforme y de alta calidad."
     },
     {
-      "name": "Línea Pre-formas",
+      "name": "Pre-acabados",
+      "image": "assets/products/humecta-800.jpg",
+      "description": "Materiales para el acabado de tacones y suelas que crean efectos rústicos y naturales, con excelente fijación del color y alta resistencia a la humedad."
+    },
+    {
+      "name": "Pre-formas",
       "image": "assets/products/linea-preformas.jpg",
-      "description": "Tintas de alta gama para el coloreado y acabado de suelas de PVC, TR, Ranil, EVA, ABS y otros materiales. Ofrecen alta resistencia a la fricción, excelente adherencia y gran durabilidad, garantizando acabados de calidad superior."
+      "description": "Tintas para suelas de PVC, TR, Ranil, EVA, ABS y otros materiales, con excelente adherencia, resistencia a la fricción y gran durabilidad."
     }
   ],
   "golden_products": [
     {
       "name": "Barcelona Cream",
-      "image": "assets/golden/barcelona-cream-nueva.jpg",
+      "image": "/assets/uploads/chatgpt-image-22-jul-2026-105153-am.png",
       "description": "Crema fina, nutritiva y restauradora de tono."
     },
     {
       "name": "Evolux Shine 1210",
-      "image": "assets/golden/evolux-shine-1210-nueva.jpg",
+      "image": "/assets/uploads/chatgpt-image-22-jul-2026-105535-am.png",
       "description": "Brillo técnico con protección y tacto flexible."
     },
     {
@@ -90,7 +90,7 @@
     },
     {
       "name": "Graso Sport",
-      "image": "assets/golden/Graso.jpg",
+      "image": "/assets/uploads/whatsapp-image-2026-07-11-at-122108-pm.jpeg",
       "description": "Acabado graso para piel de uso rudo."
     }
   ],
@@ -99,10 +99,10 @@
     "lines": [
       {
         "key": "spray",
-        "tab": "Spray",
-        "label": "SPRAY",
-        "title": "Línea SPRAY",
-        "description": "Listado oficial de productos de la línea SPRAY.",
+        "tab": "Sprays",
+        "label": "SPRAYS",
+        "title": "Línea SPRAYS",
+        "description": "Listado oficial de productos de la línea Sprays.",
         "products": [
           "11-1 NEUTRO — BELLE LUX",
           "47-7 NEUTRO — BELLE LUX",
@@ -123,7 +123,7 @@
         "tab": "Cremas",
         "label": "CREMAS",
         "title": "Línea CREMAS",
-        "description": "Listado oficial de productos de la línea CREMAS.",
+        "description": "Listado oficial de productos de la línea Cremas.",
         "products": [
           "CMZ-617 — DIJON CREAM",
           "CNFP-700 — CREMA ANTIQUE NATURAL",
@@ -139,7 +139,7 @@
         "tab": "Lavadores / Limpiadores",
         "label": "LAVADORES / LIMPIADORES",
         "title": "Línea LAVADORES / LIMPIADORES",
-        "description": "Listado oficial de productos de la línea LAVADORES / LIMPIADORES.",
+        "description": "Listado oficial de productos de la línea Lavadores / Limpiadores.",
         "products": [
           "LMZ-2691 — LAVADOR",
           "LCH-X30 — LAVADOR P/CHAROL",
@@ -158,7 +158,7 @@
         "tab": "Fijatonos",
         "label": "FIJATONOS",
         "title": "Línea FIJATONOS",
-        "description": "Listado oficial de productos de la línea FIJATONOS.",
+        "description": "Listado oficial de productos de la línea Fijatonos.",
         "products": [
           "0-04 NATURAL — VELVETOK",
           "0-05 rosa — VELVETOK",
@@ -172,7 +172,7 @@
         "tab": "Grasos",
         "label": "GRASOS",
         "title": "Línea GRASOS",
-        "description": "Listado oficial de productos de la línea GRASOS.",
+        "description": "Listado oficial de productos de la línea Grasos.",
         "products": [
           "GFP-160 — SPRAY TACTO GRASO",
           "Sin clave — Eco graso",
@@ -184,26 +184,11 @@
         "cta_message": "Hola Acabados Monza, quiero información de la línea GRASOS."
       },
       {
-        "key": "reparadores",
-        "tab": "Reparadores",
-        "label": "REPARADORES",
-        "title": "Línea REPARADORES",
-        "description": "Listado oficial de productos de la línea REPARADORES.",
-        "products": [
-          "Pigmentos",
-          "Farbern",
-          "Compactos",
-          "Estucos",
-          "Resanador"
-        ],
-        "cta_message": "Hola Acabados Monza, quiero información de la línea REPARADORES."
-      },
-      {
         "key": "marroquineria",
         "tab": "Marroquinera",
         "label": "MARROQUINERA",
         "title": "Línea MARROQUINERA",
-        "description": "Listado oficial de productos de la línea MARROQUINERA.",
+        "description": "Listado oficial de productos de la línea Marroquinera.",
         "products": [
           "Dátil MA",
           "Dátil CU",
@@ -214,11 +199,26 @@
         "cta_message": "Hola Acabados Monza, quiero información de la línea MARROQUINERA."
       },
       {
+        "key": "reparadores",
+        "tab": "Reparadores",
+        "label": "REPARADORES",
+        "title": "Línea REPARADORES",
+        "description": "Listado oficial de productos de la línea Reparadores.",
+        "products": [
+          "Pigmentos",
+          "Farbern",
+          "Compactos",
+          "Estucos",
+          "Resanador"
+        ],
+        "cta_message": "Hola Acabados Monza, quiero información de la línea REPARADORES."
+      },
+      {
         "key": "preacabados",
         "tab": "Pre-acabados",
         "label": "PRE-ACABADOS",
         "title": "Línea PRE-ACABADOS",
-        "description": "Listado oficial de productos de la línea PRE-ACABADOS.",
+        "description": "Listado oficial de productos de la línea Pre-acabados.",
         "products": [
           "Stein",
           "Tinta de cantos",
@@ -234,7 +234,7 @@
         "tab": "Auxiliares",
         "label": "AUXILIARES",
         "title": "Línea AUXILIARES",
-        "description": "Listado oficial de productos de la línea AUXILIARES.",
+        "description": "Listado oficial de productos de la línea Auxiliares.",
         "products": [
           "Acondicionador",
           "Masitas",
@@ -255,7 +255,7 @@
         "tab": "Pre-formas",
         "label": "PRE-FORMAS",
         "title": "Línea PRE-FORMAS",
-        "description": "Listado oficial de productos de la línea PRE-FORMAS.",
+        "description": "Listado oficial de productos de la línea Pre-formas.",
         "products": [
           "Tinta Eva",
           "Tinta ranil",
@@ -419,49 +419,7 @@
     "description": "Nuestro equipo acompaña cada etapa: producción, laboratorio, reparto, administración y atención comercial.",
     "members": [
       {
-        "name": "Jair Guerrero",
-        "position": "Producción",
-        "area": "produccion",
-        "image": "assets/vendors/integrante1.webp"
-      },
-      {
-        "name": "Emmanuel Martinez",
-        "position": "Producción",
-        "area": "produccion",
-        "image": "assets/vendors/integrante2.webp"
-      },
-      {
-        "name": "Edwen Martinez",
-        "position": "Producción",
-        "area": "produccion",
-        "image": "assets/vendors/integrante3.webp"
-      },
-      {
-        "name": "Nataly Gomez",
-        "position": "Administración",
-        "area": "administracion",
-        "image": "assets/vendors/integrante4.webp"
-      },
-      {
-        "name": "Vanessa Ibarra",
-        "position": "Administración",
-        "area": "administracion",
-        "image": "assets/vendors/integrante5.webp"
-      },
-      {
-        "name": "Antonio Soto",
-        "position": "Reparto",
-        "area": "reparto",
-        "image": "assets/vendors/integrante6.webp"
-      },
-      {
-        "name": "Fernando Guerrero",
-        "position": "Reparto",
-        "area": "reparto",
-        "image": "assets/vendors/integrante7.webp"
-      },
-      {
-        "name": "Juan Manuel Mata Jaramillo",
+        "name": "Juan Manuel Jaramillo",
         "position": "Comercial",
         "area": "comercial",
         "image": "assets/vendors/integrante8.webp",
@@ -491,6 +449,48 @@
         "image": "assets/vendors/integrante11.webp",
         "email": "acabadosmonza.ventas4@hotmail.com",
         "phone": "720 467 4849"
+      },
+      {
+        "name": "Nataly Gomez",
+        "position": "Administración",
+        "area": "administracion",
+        "image": "assets/vendors/integrante4.webp"
+      },
+      {
+        "name": "Vanessa Ibarra",
+        "position": "Administración",
+        "area": "administracion",
+        "image": "assets/vendors/integrante5.webp"
+      },
+      {
+        "name": "Fernando Guerrero",
+        "position": "Reparto",
+        "area": "reparto",
+        "image": "assets/vendors/integrante7.webp"
+      },
+      {
+        "name": "Antonio Soto",
+        "position": "Reparto",
+        "area": "reparto",
+        "image": "assets/vendors/integrante6.webp"
+      },
+      {
+        "name": "Jair Guerrero",
+        "position": "Producción",
+        "area": "produccion",
+        "image": "assets/vendors/integrante1.webp"
+      },
+      {
+        "name": "Emmanuel Martinez",
+        "position": "Producción",
+        "area": "produccion",
+        "image": "assets/vendors/integrante2.webp"
+      },
+      {
+        "name": "Edwen Martinez",
+        "position": "Producción",
+        "area": "produccion",
+        "image": "assets/vendors/integrante3.webp"
       },
       {
         "name": "Jessica Almaguer",
