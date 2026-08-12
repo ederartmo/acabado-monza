@@ -80,17 +80,17 @@
     },
     {
       "name": "Velvet",
-      "image": "assets/golden/velvet-nueva.jpg",
+      "image": "/assets/uploads/chatgpt-image-12-ago-2026-101754-am.png",
       "description": "Tacto suave para acabados de apariencia fina."
     },
     {
       "name": "Belle Lux 204",
-      "image": "assets/golden/belle-lux-204-nueva.jpg",
+      "image": "/assets/uploads/chatgpt-image-12-ago-2026-101948-am.png",
       "description": "Lustre elegante para piezas terminadas."
     },
     {
       "name": "Graso Sport",
-      "image": "/assets/uploads/whatsapp-image-2026-07-11-at-122108-pm.jpeg",
+      "image": "/assets/uploads/chatgpt-image-12-ago-2026-102352-am.png",
       "description": "Acabado graso para piel de uso rudo."
     }
   ],
