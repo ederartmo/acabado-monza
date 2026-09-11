@@ -491,12 +491,6 @@
         "position": "Producción",
         "area": "produccion",
         "image": "assets/vendors/integrante3.webp"
-      },
-      {
-        "name": "Jessica Almaguer",
-        "position": "Laboratorio",
-        "area": "laboratorio",
-        "image": "assets/vendors/integrante12.webp"
       }
     ]
   },
