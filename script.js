@@ -174,6 +174,13 @@ const renderTeam = (section) => {
   const grid = teamSection?.querySelector('.team-grid');
   if (!teamSection || !grid) return;
 
+  const isVisible = section.visible !== false;
+  teamSection.hidden = !isVisible;
+  document.querySelectorAll('a[href="#equipo"]').forEach((link) => {
+    link.hidden = !isVisible;
+  });
+  if (!isVisible) return;
+
   const header = teamSection.querySelector('.team-section__head');
   const eyebrow = header?.querySelector('.eyebrow');
   const title = header?.querySelector('h2');

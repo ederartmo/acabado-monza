@@ -189,6 +189,9 @@ content:
         label: Equipo Monza
         type: object
         fields:
+          - name: visible
+            label: Mostrar sección del equipo
+            type: boolean
           - { name: eyebrow, label: Texto superior, type: string }
           - { name: title, label: Título, type: string }
           - { name: description, label: Descripción, type: text }

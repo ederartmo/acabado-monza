@@ -413,6 +413,9 @@
     "location": "León, Gto.",
     "service": "Asesoría técnica para procesos reales de acabado."
   },
+  "team": {
+    "visible": false
+  },
   "contact": {
     "title": "Solicita asesoría técnica",
     "description": "Cuéntanos lo esencial y te orientamos por WhatsApp."
