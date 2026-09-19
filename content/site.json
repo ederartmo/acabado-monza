@@ -414,7 +414,7 @@
     "service": "Asesoría técnica para procesos reales de acabado."
   },
   "team": {
-    "visible": true,
+    "visible": false,
     "eyebrow": "Equipo Monza",
     "title": "Personas que acompañan cada proceso.",
     "description": "Nuestro equipo acompaña cada etapa: producción, laboratorio, reparto, administración y atención comercial.",
