@@ -414,7 +414,92 @@
     "service": "Asesoría técnica para procesos reales de acabado."
   },
   "team": {
-    "visible": false
+    "visible": false,
+    "eyebrow": "Equipo Monza",
+    "title": "Personas que acompañan cada proceso.",
+    "description": "Nuestro equipo acompaña cada etapa: producción, laboratorio, reparto, administración y atención comercial.",
+    "members": [
+      {
+        "name": "Jair Guerrero",
+        "position": "Producción",
+        "area": "produccion",
+        "image": "assets/vendors/integrante1.webp"
+      },
+      {
+        "name": "Emmanuel Martinez",
+        "position": "Producción",
+        "area": "produccion",
+        "image": "assets/vendors/integrante2.webp"
+      },
+      {
+        "name": "Edwen Martinez",
+        "position": "Producción",
+        "area": "produccion",
+        "image": "assets/vendors/integrante3.webp"
+      },
+      {
+        "name": "Nataly Gomez",
+        "position": "Administración",
+        "area": "administracion",
+        "image": "assets/vendors/integrante4.webp"
+      },
+      {
+        "name": "Vanessa Ibarra",
+        "position": "Administración",
+        "area": "administracion",
+        "image": "assets/vendors/integrante5.webp"
+      },
+      {
+        "name": "Antonio Soto",
+        "position": "Reparto",
+        "area": "reparto",
+        "image": "assets/vendors/integrante6.webp"
+      },
+      {
+        "name": "Fernando Guerrero",
+        "position": "Reparto",
+        "area": "reparto",
+        "image": "assets/vendors/integrante7.webp"
+      },
+      {
+        "name": "Juan Manuel Mata Jaramillo",
+        "position": "Gerente Comercial",
+        "area": "comercial",
+        "image": "assets/vendors/integrante8.webp",
+        "email": "acabadosmonza.ventas1@hotmail.com",
+        "phone": "477 525 3413"
+      },
+      {
+        "name": "Alexis Zavala",
+        "position": "Asesor de ventas",
+        "area": "comercial",
+        "image": "assets/vendors/integrante9.webp",
+        "email": "acabadosmonza.ventas2@hotmail.com",
+        "phone": "720 248 8376"
+      },
+      {
+        "name": "Aldo López",
+        "position": "Asesor de ventas",
+        "area": "comercial",
+        "image": "assets/vendors/integrante10.webp",
+        "email": "acabadosmonza.ventas3@hotmail.com",
+        "phone": "729 971 9963"
+      },
+      {
+        "name": "Luis Rangel",
+        "position": "Asesor de ventas",
+        "area": "comercial",
+        "image": "assets/vendors/integrante11.webp",
+        "email": "acabadosmonza.ventas4@hotmail.com",
+        "phone": "720 467 4849"
+      },
+      {
+        "name": "Jessica Almaguer",
+        "position": "Laboratorio",
+        "area": "laboratorio",
+        "image": "assets/vendors/integrante12.webp"
+      }
+    ]
   },
   "contact": {
     "title": "Solicita asesoría técnica",
